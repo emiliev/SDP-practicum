@@ -13,15 +13,36 @@
 
 using namespace std;
 
-void BFS(Table matrix, Cell startingCell){
+//void BFS(Table matrix, Cell startingCell){
+//
+//    
+//    queue<Cell> newQueue;
+//    newQueue.push(startingCell);
+//    
+//    while (!newQueue.empty()) {
+//        
+//        Cell newCell = newQueue.front();
+//        newQueue.pop();
+//        
+//        
+//    }
+//}
 
-    
+
+void getAllCells(Table matrix, Cell startingCell){
+
+    bool isAdded = false;
     queue<Cell> newQueue;
     newQueue.push(startingCell);
-    std::cout<<startingCell.getRow()<<" "<<startingCell.getCol()<<"\n";
     
+    while (!isAdded) {
+        
+        isAdded = false;
+        //get neighbours of current cell
+        
+        
+    }
 }
-
 
 int main(int argc, const char * argv[]) {
    
@@ -55,7 +76,7 @@ int main(int argc, const char * argv[]) {
     table.showTable();
     
     Cell currentCell = table.getElement(curRow, curCol);
-    BFS(table, currentCell);
+   // BFS(table, currentCell);
 //    newQ.push(table.getElement(curRow, curCol));
 //    while (!newQueue.empty()) {
 //        
