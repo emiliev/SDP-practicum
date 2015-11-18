@@ -70,6 +70,16 @@ void process(char* &word){
 }
 
 
+bool isPassable(char* word, int row){
+    
+    if(word[row]){
+        
+        return true;
+    }
+    
+    return false;
+}
+
 int main(int argc, const char * argv[]) {
     
     
