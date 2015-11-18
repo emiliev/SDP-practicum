@@ -16,24 +16,24 @@ class Cell{
     public:
     
         Cell();
-        Cell(char);
+        Cell(char, int, int);
         ~Cell();
     
         int getRow();
         int getCol();
         char getSymbol();
-        void setRow(int );
-        void setCol(int );
-        void setSymbol(char);
     
         bool isEntered();
-    
+        void init(char,int, int);
     private:
     
         char symbol;
         int row;
         int col;
     
+        void setRow(int );
+        void setCol(int );
+        void setSymbol(char);
     
 };
 #endif /* Cell_hpp */

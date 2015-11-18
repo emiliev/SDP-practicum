@@ -10,7 +10,18 @@
 #include "queue"
 #include "Cell.hpp"
 #include "Table.hpp"
+
 using namespace std;
+
+void BFS(Table matrix, Cell startingCell){
+
+    
+    queue<Cell> newQueue;
+    newQueue.push(startingCell);
+    std::cout<<startingCell.getRow()<<" "<<startingCell.getCol()<<"\n";
+    
+}
+
 
 int main(int argc, const char * argv[]) {
    
@@ -38,41 +49,23 @@ int main(int argc, const char * argv[]) {
     int curRow, curCol;
     cout<<"Enter starting possition: ";
     cin>>curRow>>curCol;
-    
-//    cout<<isPassable(lab, curRow, curCol, 3, 3)<<"\n";
-    
-    
-    newQueue.push(lab[curRow][curCol]);
-    Table table(3,3);
+ 
+    Table table(numberOfRows,numberOfCols);
     table.populateTable(lab);
     table.showTable();
-  
-    while (!newQueue.empty()) {
-        
-        char curSym = newQueue.front();
-        newQueue.pop();
-        
-        
-        
-    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    Cell currentCell = table.getElement(curRow, curCol);
+    BFS(table, currentCell);
+//    newQ.push(table.getElement(curRow, curCol));
+//    while (!newQueue.empty()) {
+//        
+//        char curSym = newQueue.front();
+//        newQueue.pop();
+//        
+//        
+//        
+//    }
+//    
     
   //  int sameLab[3][3] = {0,};
     

@@ -8,6 +8,11 @@
 
 #include "Table.hpp"
 
+
+Table::Table(){
+
+}
+
 Table::Table(int numOfRows, int numOfCols){
     
     this->rows = numOfRows;
@@ -19,6 +24,21 @@ Table::Table(int numOfRows, int numOfCols){
 Table::~Table(){
     
     this->releaseTable();
+}
+
+Table::Table(Table const &other){
+    
+    copyFrom(other);
+}
+
+Table& Table::operator=(Table const &other){
+    
+    if(this != &other){
+        releaseTable();
+        copyFrom(other);
+    }
+    
+    return *this;
 }
 
 void Table::makeTable(){
@@ -47,7 +67,7 @@ void Table::populateTable(char** matrix){
         
         for(int col = 0; col < this->cols; ++col){
             
-            this->table[row][col].setSymbol(matrix[row][col]);
+           this->table[row][col].init(matrix[row][col], row, col);
         }
     }
 }
@@ -62,5 +82,24 @@ void Table::showTable(){
         }
         
         std::cout<<"\n";
+    }
+}
+
+Cell Table::getElement(int _row, int _col){
+    
+    return table[_row][_col];
+}
+
+void Table::copyFrom(Table const &other){
+    
+    this->rows = other.rows;
+    this->cols = other.cols;
+    this->makeTable();
+    for(int row = 0; row < rows; ++row){
+        
+        for(int col = 0; col < cols; ++col){
+            
+            table[row][col] = other.table[row][col];
+        }
     }
 }

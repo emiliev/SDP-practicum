@@ -15,13 +15,15 @@ class Table{
     
     public:
     
+    Table();
     Table(int, int);
     ~Table();
     Table(Table const &);
     Table& operator=(Table const &);
     void populateTable(char**);
     void showTable();
-
+    
+    Cell getElement(int, int);
     private:
     
         Cell** table;

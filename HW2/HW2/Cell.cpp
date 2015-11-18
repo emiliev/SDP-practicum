@@ -10,14 +10,13 @@
 
 Cell::Cell(){
     
-    this->symbol = '.';
-    this->row = 0;
-    this->col = 0;
+    this->init('.', 0, 0);
 }
 
-Cell::Cell(char _symbol){
+Cell::Cell(char _symbol, int _row, int _col){
     
-    this->setSymbol(_symbol);
+    
+    this->init(symbol, _row, _col);
 }
 
 Cell::~Cell(){
@@ -52,4 +51,11 @@ int Cell::getRow(){
 char Cell::getSymbol(){
     
     return this->symbol;
+}
+
+void Cell::init(char _symb, int _row, int _col){
+    
+    this->setSymbol(_symb);
+    this->setRow(_row);
+    this->setCol(_col);
 }
