@@ -85,9 +85,19 @@ void Table::showTable(){
     }
 }
 
-Cell Table::getElement(int _row, int _col){
+Cell* Table::getElement(int _row, int _col){
     
-    return table[_row][_col];
+    return &table[_row][_col];
+}
+
+int Table::getRows(){
+    
+    return this->rows;
+}
+
+int Table::getCols(){
+    
+    return this->cols;
 }
 
 void Table::copyFrom(Table const &other){

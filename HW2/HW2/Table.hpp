@@ -23,7 +23,9 @@ class Table{
     void populateTable(char**);
     void showTable();
     
-    Cell getElement(int, int);
+    int getRows();
+    int getCols();
+    Cell* getElement(int, int);
     private:
     
         Cell** table;

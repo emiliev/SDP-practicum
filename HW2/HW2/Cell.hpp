@@ -10,7 +10,7 @@
 #define Cell_hpp
 
 #include <stdio.h>
-
+#include "iostream"
 class Cell{
     
     public:
@@ -23,7 +23,11 @@ class Cell{
         int getCol();
         char getSymbol();
     
-        bool isEntered();
+        void mark();
+        void unmark();
+        void print();
+        bool isVisited();
+        bool isWall();
         void init(char,int, int);
     private:
     
@@ -31,6 +35,7 @@ class Cell{
         int row;
         int col;
     
+        bool visit;
         void setRow(int );
         void setCol(int );
         void setSymbol(char);

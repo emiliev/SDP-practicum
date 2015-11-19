@@ -29,22 +29,51 @@ using namespace std;
 //}
 
 
-void getAllCells(Table matrix, Cell startingCell){
+int dx[] = {0,-1,0,1};
+int dy[] = {-1,0,1,0};
 
-    bool isAdded = false;
-    queue<Cell> newQueue;
-    newQueue.push(startingCell);
+void addIfPossibleAndNotVissited(queue<Cell*>& queue, Cell* pCell){
     
-    while (!isAdded) {
+    if(pCell && !pCell->isVisited() && !pCell->isWall()){
         
-        isAdded = false;
-        //get neighbours of current cell
-        
+        pCell->mark();
+        queue.push(pCell);
         
     }
 }
 
-int main(int argc, const char * argv[]) {
+void getAllCells(Table matrix, Cell*& startingCell){
+
+    queue<Cell*> newQueue;
+    newQueue.push(startingCell);
+    
+    int maxRow = matrix.getRows();
+    int maxCol = matrix.getCols();
+    
+    Cell* newCell = NULL;
+    while (!newQueue.empty()) {
+        
+        Cell* curCell = newQueue.front();
+        newQueue.pop();
+        curCell->mark();
+        
+        curCell->print();
+        for(int index = 0; index < 4; ++index){
+          
+            if((curCell->getRow() + dx[index] >= 0) && (curCell->getRow() + dx[index] < maxRow) &&
+               (curCell->getCol() + dy[index] >= 0) && (curCell->getCol() + dy[index] < maxCol)){
+  
+                newCell = matrix.getElement(curCell->getRow() + dx[index], curCell->getCol() + dy[index]);
+                addIfPossibleAndNotVissited(newQueue, newCell);
+            }
+        
+        }
+    }
+    
+}
+
+
+int main(int argc, const char * argv[]){
    
     int numberOfRows, numberOfCols;
     cout<<"Size of table: ";
@@ -73,23 +102,8 @@ int main(int argc, const char * argv[]) {
  
     Table table(numberOfRows,numberOfCols);
     table.populateTable(lab);
-    table.showTable();
-    
-    Cell currentCell = table.getElement(curRow, curCol);
-   // BFS(table, currentCell);
-//    newQ.push(table.getElement(curRow, curCol));
-//    while (!newQueue.empty()) {
-//        
-//        char curSym = newQueue.front();
-//        newQueue.pop();
-//        
-//        
-//        
-//    }
-//    
-    
-  //  int sameLab[3][3] = {0,};
-    
-    
+    Cell* currentCell = table.getElement(curRow, curCol);
+    currentCell->mark();
+    getAllCells(table, currentCell);
     return 0;
 }
