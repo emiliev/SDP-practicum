@@ -79,7 +79,7 @@ void Cell::unmark(){
 
 void Cell::print(){
     
-    std::cout<<"( "<<this->getRow()<<", "<<this->getCol()<<" )";
+    std::cout<<"("<<this->getRow()<<", "<<this->getCol()<<")";
 }
 
 bool Cell::isVisited(){

@@ -10,24 +10,9 @@
 #include "queue"
 #include "Cell.hpp"
 #include "Table.hpp"
+#include "DinamicArray.hpp"
 
 using namespace std;
-
-//void BFS(Table matrix, Cell startingCell){
-//
-//    
-//    queue<Cell> newQueue;
-//    newQueue.push(startingCell);
-//    
-//    while (!newQueue.empty()) {
-//        
-//        Cell newCell = newQueue.front();
-//        newQueue.pop();
-//        
-//        
-//    }
-//}
-
 
 int dx[] = {0,-1,0,1};
 int dy[] = {-1,0,1,0};
@@ -38,11 +23,11 @@ void addIfPossibleAndNotVissited(queue<Cell*>& queue, Cell* pCell){
         
         pCell->mark();
         queue.push(pCell);
-        
+      //  pCell->print();
     }
 }
 
-void getAllCells(Table matrix, Cell*& startingCell){
+void getAllCells(Table matrix, Cell*& startingCell, DinamicArray<Cell*>& dArray){
 
     queue<Cell*> newQueue;
     newQueue.push(startingCell);
@@ -56,8 +41,7 @@ void getAllCells(Table matrix, Cell*& startingCell){
         Cell* curCell = newQueue.front();
         newQueue.pop();
         curCell->mark();
-        
-        curCell->print();
+        dArray.addElement(curCell);
         for(int index = 0; index < 4; ++index){
           
             if((curCell->getRow() + dx[index] >= 0) && (curCell->getRow() + dx[index] < maxRow) &&
@@ -65,8 +49,8 @@ void getAllCells(Table matrix, Cell*& startingCell){
   
                 newCell = matrix.getElement(curCell->getRow() + dx[index], curCell->getCol() + dy[index]);
                 addIfPossibleAndNotVissited(newQueue, newCell);
+                
             }
-        
         }
     }
     
@@ -85,7 +69,7 @@ int main(int argc, const char * argv[]){
         lab[index] = new char[numberOfCols];
     }
     
-    cout<<"Populate table: ";
+    cout<<"Populate table: \n";
     for(int i = 0; i < numberOfRows; ++i){\
         
         for(int j = 0; j < numberOfCols; ++j){
@@ -93,17 +77,27 @@ int main(int argc, const char * argv[]){
             cin>>lab[i][j];
         }
     }
-    
-    queue<char> newQueue;
-    
+
     int curRow, curCol;
     cout<<"Enter starting possition: ";
     cin>>curRow>>curCol;
  
     Table table(numberOfRows,numberOfCols);
     table.populateTable(lab);
+    table.showTable();
     Cell* currentCell = table.getElement(curRow, curCol);
     currentCell->mark();
-    getAllCells(table, currentCell);
+    DinamicArray<Cell*> dArray;
+    
+    if(!currentCell->isWall()){
+    
+        getAllCells(table, currentCell,dArray);
+    }
+    
+    std::cout<<'\n';
+    for(int index = 1; index < dArray.getLength(); ++index){
+        currentCell = dArray.getElementAtIndex(index);
+        currentCell->print();
+    }
     return 0;
 }
