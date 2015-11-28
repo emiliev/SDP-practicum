@@ -14,12 +14,16 @@ static int dy[] = {-1,0,1,0};
 
 Solver::Solver(){
     
+    this->numberOfPaths = 1;
+    this->paths = new DinamicArray<Cell*>[1];
 }
 
 
 Solver::~Solver(){
 
+    
 }
+
 
 void Solver::getAllCells(Table matrix, Cell* startingCell){
     
@@ -72,9 +76,9 @@ void Solver::showPaths(Cell *startCell, Table &matrix){
         Cell *endCell = dArray.getElementAtIndex(index);
         endCell->print();
         std::cout<<"\n";
-        currentPath.addElement(startCell);
+        
         showAllPaths(startCell, endCell, matrix);
-
+        showCurrentPath();
     }
 }
 
@@ -82,8 +86,7 @@ void Solver::showAllPaths(Cell* startCell, Cell* endCell, Table &matrix){
     
     if(startCell->getRow() == endCell->getRow() && startCell->getCol() == endCell->getCol()){
         
-        showCurrentPath();
-        currentPath.free();
+        resize();
         return;
     }
     
@@ -95,7 +98,7 @@ void Solver::showAllPaths(Cell* startCell, Cell* endCell, Table &matrix){
             Cell* newCell = matrix.getElement(startCell->getRow() + dx[index], startCell->getCol() + dy[index]);
             if(!(newCell->isVisited() || newCell->isWall())) {
                 
-                currentPath.addElement(newCell);
+                paths[numberOfPaths - 1].addElement(newCell);
                 showAllPaths(newCell, endCell, matrix);
 
             }
@@ -110,10 +113,25 @@ void Solver::showAllPaths(Cell* startCell, Cell* endCell, Table &matrix){
 
 void Solver::showCurrentPath(){
     
-    for(int index = 0; index < currentPath.getLength(); ++index){
-        Cell *temp = currentPath.getElementAtIndex(index);
-        temp->print();
+    for(int index = 0; index < paths[numberOfPaths - 1].getLength(); ++index){
+        Cell *temp = paths[numberOfPaths - 1].getElementAtIndex(index);
+            temp->print();
     }
     std::cout<<"\n";
     
 }
+
+void Solver::resize(){
+    
+    this->numberOfPaths++;
+    DinamicArray<Cell*>* newPaths = new DinamicArray<Cell*>[numberOfPaths];
+    for(int index = 0; index < numberOfPaths - 1; ++index){
+        
+        newPaths[index] = this->paths[index];
+    }
+    
+    delete [] paths;
+    
+    this->paths = newPaths;
+}
+

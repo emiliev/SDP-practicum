@@ -30,8 +30,9 @@ private:
     DinamicArray<Cell*> dArray; // масив с достижимите клетки
     void addIfPossibleAndNotVissited(std::queue<Cell*>& queue, Cell* pCell);
     DinamicArray<Cell*> *paths; //всички пътища до дадена клетка
-    DinamicArray<Cell*> currentPath;
     void showAllPaths(Cell* startCell, Cell* endCell, Table &matrix);
-    
+   
+    int numberOfPaths;
+    void resize();
 };
 #endif /* Solver_hpp */
