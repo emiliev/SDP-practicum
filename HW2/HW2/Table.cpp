@@ -9,6 +9,10 @@
 #include "Table.hpp"
 
 
+int dx[] = {0,-1,0,1};
+int dy[] = {-1,0,1,0};
+
+
 Table::Table(){
 
 }
@@ -110,6 +114,16 @@ int Table::getRows(){
 int Table::getCols(){
     
     return this->cols;
+}
+
+bool Table::validNextMove(Cell* curCell, int index){
+    
+    if((curCell->getRow() + dx[index] >= 0) && (curCell->getRow() + dx[index] < this->getRows()) &&
+       (curCell->getCol() + dy[index] >= 0) && (curCell->getCol() + dy[index] < this->getCols())){
+        
+        return true;
+    }
+    return false;
 }
 
 void Table::copyFrom(Table const &other){

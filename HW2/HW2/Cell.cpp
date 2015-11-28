@@ -39,7 +39,10 @@ void Cell::setSymbol(char _symbol){
     if(_symbol == '#' || _symbol =='.'){
         this->symbol = _symbol;
     }
-    
+    else{
+        
+        this->symbol = '#';
+    }
 }
 
 int Cell::getCol(){

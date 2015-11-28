@@ -9,7 +9,7 @@
 #ifndef Solver_hpp
 #define Solver_hpp
 
-
+#include "iostream"
 #include "Solver.hpp"
 #include "Table.hpp"
 #include "Cell.hpp"
@@ -20,14 +20,18 @@ class Solver{
     
 public:
     Solver();
-    
+    ~Solver();
     void getAllCells(Table matrix, Cell* startingCell);
-    void showAllPaths(Cell* startCell, Cell* endCell);
+    void showPaths(Cell* startCell, Table &matrix);
     void showCells();
+    void showCurrentPath();
 private:
     
-    DinamicArray<Cell*> dArray;
+    DinamicArray<Cell*> dArray; // масив с достижимите клетки
     void addIfPossibleAndNotVissited(std::queue<Cell*>& queue, Cell* pCell);
+    DinamicArray<Cell*> *paths; //всички пътища до дадена клетка
+    DinamicArray<Cell*> currentPath;
+    void showAllPaths(Cell* startCell, Cell* endCell, Table &matrix);
     
 };
 #endif /* Solver_hpp */

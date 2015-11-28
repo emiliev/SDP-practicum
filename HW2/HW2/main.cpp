@@ -91,26 +91,15 @@ int main(int argc, const char * argv[]){
     }
     
     dfs.showCells();
+    table.unMarkCells();
     cout<<"\n";
-   
-//    for(int index = 1; index < dArray.getLength(); ++index){
-//        
-//        DinamicArray<Cell*> allPaths;
-//        unMarkCells(table);
-//        Cell* endCell = dArray.getElementAtIndex(index);
-//        endCell->print();
-//        cout<<"\n";
-//        allPaths.addElement(currentCell);
-//        showAllPaths(currentCell, endCell, table, allPaths);
-//
-//        cout<<"\n";
-//    }
-//    
-//    for(int index = 0; index < numberOfRows; ++index){
-//        
-//        delete [] lab[index];
-//    }
-//    
+    dfs.showPaths(currentCell, table);
+    
+    for(int index = 0; index < numberOfRows; ++index){
+        
+        delete [] lab[index];
+    }
+    
     delete []lab;
     return 0;
 }

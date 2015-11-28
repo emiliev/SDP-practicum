@@ -28,6 +28,7 @@ class Table{
     Cell* getElement(int, int);
     void unMarkCells();
     
+    bool validNextMove(Cell* ,int );
     private:
     
         Cell** table;
