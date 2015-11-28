@@ -85,6 +85,18 @@ void Table::showTable(){
     }
 }
 
+void Table::unMarkCells(){
+    
+    for(int row = 0; row < this->rows; ++row){
+        
+        for(int col = 0; col < this->cols; ++col){
+            
+            getElement(row, col)->unmark();
+        }
+    }
+
+}
+
 Cell* Table::getElement(int _row, int _col){
     
     return &table[_row][_col];

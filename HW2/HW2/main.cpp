@@ -10,52 +10,47 @@
 #include "queue"
 #include "Cell.hpp"
 #include "Table.hpp"
-#include "DinamicArray.hpp"
+#include "Solver.hpp"
 
 using namespace std;
 
-int dx[] = {0,-1,0,1};
-int dy[] = {-1,0,1,0};
-
-void addIfPossibleAndNotVissited(queue<Cell*>& queue, Cell* pCell){
-    
-    if(pCell && !pCell->isVisited() && !pCell->isWall()){
-        
-        pCell->mark();
-        queue.push(pCell);
-      //  pCell->print();
-    }
-}
-
-void getAllCells(Table matrix, Cell*& startingCell, DinamicArray<Cell*>& dArray){
-
-    queue<Cell*> newQueue;
-    newQueue.push(startingCell);
-    
-    int maxRow = matrix.getRows();
-    int maxCol = matrix.getCols();
-    
-    Cell* newCell = NULL;
-    while (!newQueue.empty()) {
-        
-        Cell* curCell = newQueue.front();
-        newQueue.pop();
-        curCell->mark();
-        dArray.addElement(curCell);
-        for(int index = 0; index < 4; ++index){
-          
-            if((curCell->getRow() + dx[index] >= 0) && (curCell->getRow() + dx[index] < maxRow) &&
-               (curCell->getCol() + dy[index] >= 0) && (curCell->getCol() + dy[index] < maxCol)){
-  
-                newCell = matrix.getElement(curCell->getRow() + dx[index], curCell->getCol() + dy[index]);
-                addIfPossibleAndNotVissited(newQueue, newCell);
-                
-            }
-        }
-    }
-    
-}
-
+//void showAllPaths(Cell* startingCell, Cell* &endCell, Table &matrix, DinamicArray<Cell*> &allPaths){
+//    
+//    if(startingCell->getCol() == endCell->getCol() && startingCell->getRow() == endCell->getRow()){
+//        
+//        for(int index = 0; index < allPaths.getLength(); ++index){
+//            Cell* a = allPaths.getElementAtIndex(index);
+//            a->print();
+//        }
+//        
+//        cout<<"\n";
+//        
+//        return;
+//    }
+//    
+//    int maxRow = matrix.getRows();
+//    int maxCol = matrix.getCols();
+//    
+//    startingCell->mark();
+//    
+//    for(int index = 0; index < 4; ++index){
+//     
+//        if((startingCell->getRow() + dx[index] >= 0) && (startingCell->getRow() + dx[index] < maxRow) &&
+//           (startingCell->getCol() + dy[index] >= 0) && (startingCell->getCol() + dy[index] < maxCol)){
+//            
+//            Cell* newCell = matrix.getElement(startingCell->getRow() + dx[index], startingCell->getCol() + dy[index]);
+//            
+//            if(newCell->isWall() || newCell->isVisited()){
+//                
+//                continue;
+//            }
+//            
+//            allPaths.addElement(newCell);
+//            showAllPaths(newCell, endCell, matrix, allPaths);
+//        }
+//    }
+//    startingCell->unmark();
+//}
 
 int main(int argc, const char * argv[]){
    
@@ -87,17 +82,35 @@ int main(int argc, const char * argv[]){
     table.showTable();
     Cell* currentCell = table.getElement(curRow, curCol);
     currentCell->mark();
-    DinamicArray<Cell*> dArray;
+    
+    Solver dfs;
     
     if(!currentCell->isWall()){
     
-        getAllCells(table, currentCell,dArray);
+        dfs.getAllCells(table, currentCell);
     }
     
-    std::cout<<'\n';
-    for(int index = 1; index < dArray.getLength(); ++index){
-        currentCell = dArray.getElementAtIndex(index);
-        currentCell->print();
-    }
+    dfs.showCells();
+    cout<<"\n";
+   
+//    for(int index = 1; index < dArray.getLength(); ++index){
+//        
+//        DinamicArray<Cell*> allPaths;
+//        unMarkCells(table);
+//        Cell* endCell = dArray.getElementAtIndex(index);
+//        endCell->print();
+//        cout<<"\n";
+//        allPaths.addElement(currentCell);
+//        showAllPaths(currentCell, endCell, table, allPaths);
+//
+//        cout<<"\n";
+//    }
+//    
+//    for(int index = 0; index < numberOfRows; ++index){
+//        
+//        delete [] lab[index];
+//    }
+//    
+    delete []lab;
     return 0;
 }

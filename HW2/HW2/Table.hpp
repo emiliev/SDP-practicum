@@ -26,6 +26,8 @@ class Table{
     int getRows();
     int getCols();
     Cell* getElement(int, int);
+    void unMarkCells();
+    
     private:
     
         Cell** table;

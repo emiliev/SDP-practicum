@@ -10,6 +10,7 @@
 		BDA3B8161BFC98CD00CF71A3 /* Table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDA3B8141BFC98CD00CF71A3 /* Table.cpp */; };
 		BDA69E481BFC7A7D00166E3A /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDA69E461BFC7A7D00166E3A /* Cell.cpp */; };
 		BDCF0E181BFBD9DA0023DF71 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDCF0E171BFBD9DA0023DF71 /* main.cpp */; };
+		BDE5BC3A1C09E61300F9E361 /* Solver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDE5BC381C09E61300F9E361 /* Solver.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +33,8 @@
 		BDCF0E141BFBD9DA0023DF71 /* HW2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HW2; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDCF0E171BFBD9DA0023DF71 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		BDE5A6A81BFF138F0029E88C /* DinamicArray.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DinamicArray.hpp; sourceTree = "<group>"; };
+		BDE5BC381C09E61300F9E361 /* Solver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Solver.cpp; sourceTree = "<group>"; };
+		BDE5BC391C09E61300F9E361 /* Solver.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Solver.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,8 @@
 				BDA69E461BFC7A7D00166E3A /* Cell.cpp */,
 				BDA69E471BFC7A7D00166E3A /* Cell.hpp */,
 				BDE5A6A81BFF138F0029E88C /* DinamicArray.hpp */,
+				BDE5BC381C09E61300F9E361 /* Solver.cpp */,
+				BDE5BC391C09E61300F9E361 /* Solver.hpp */,
 			);
 			path = HW2;
 			sourceTree = "<group>";
@@ -132,6 +137,7 @@
 			files = (
 				BDA3B8161BFC98CD00CF71A3 /* Table.cpp in Sources */,
 				BDCF0E181BFBD9DA0023DF71 /* main.cpp in Sources */,
+				BDE5BC3A1C09E61300F9E361 /* Solver.cpp in Sources */,
 				BDA69E481BFC7A7D00166E3A /* Cell.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

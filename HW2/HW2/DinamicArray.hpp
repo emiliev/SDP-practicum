@@ -22,6 +22,7 @@ class DinamicArray{
         DinamicArray& operator=(DinamicArray const &other);
     
         void addElement(T element);
+        void removeLastElement();
         size_t getLength();
         T getElementAtIndex(size_t index);
     private:
@@ -107,6 +108,13 @@ T DinamicArray<T>::getElementAtIndex(size_t index){
     }
     
     return data[index];
+}
+
+template <typename T>
+void DinamicArray<T>::removeLastElement(){
+    
+    data[length] = NULL;
+    length--;
 }
 
 template <typename T>
