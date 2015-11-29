@@ -133,7 +133,7 @@ void DinamicArray<T>::copyFrom(DinamicArray<T> const &other){
 template <typename T>
 void DinamicArray<T>::destroy(){
     
-    delete data;
+    delete [] data;
     data = NULL;
     length = 0;
     allocatedSize = 0;
@@ -155,14 +155,5 @@ void DinamicArray<T>::reallocate(int removedSize){
     length = newSize;
     allocatedSize = newSize;
 }
-
-
-
-
-
-
-
-
-
 
 #endif /* DinamicArray_hpp */

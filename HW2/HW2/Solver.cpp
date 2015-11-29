@@ -7,15 +7,8 @@
 //
 #include "Solver.hpp"
 
-
-static int dx[] = {0,-1,0,1};
-static int dy[] = {-1,0,1,0};
-
-
 Solver::Solver(){
     
-    this->numberOfPaths = 1;
-    this->paths = new DinamicArray<Cell*>[1];
 }
 
 
@@ -27,14 +20,14 @@ Solver::~Solver(){
 
 void Solver::getAllCells(Table matrix, Cell* startingCell){
     
-    std::queue<Cell*> newQueue;
-    newQueue.push(startingCell);
+    LinkedQueue<Cell*> linkedQueue;
+    linkedQueue.enqueue(startingCell);
     
     Cell* newCell = NULL;
-    while (!newQueue.empty()) {
+    while (!linkedQueue.isEmpty()) {
         
-        Cell* curCell = newQueue.front();
-        newQueue.pop();
+        Cell* curCell;
+        linkedQueue.dequeue(curCell);
         curCell->mark();
         dArray.addElement(curCell);
         for(int index = 0; index < 4; ++index){
@@ -42,7 +35,7 @@ void Solver::getAllCells(Table matrix, Cell* startingCell){
             if(matrix.validNextMove(curCell, index)){
                 
                 newCell = matrix.getElement(curCell->getRow() + dx[index], curCell->getCol() + dy[index]);
-                addIfPossibleAndNotVissited(newQueue, newCell);
+                addIfPossibleAndNotVissited(linkedQueue, newCell);
                 
             }
         }
@@ -58,12 +51,12 @@ void Solver::showCells(){
     }
 }
 
-void Solver::addIfPossibleAndNotVissited(std::queue<Cell*>& queue, Cell* pCell){
+void Solver::addIfPossibleAndNotVissited(LinkedQueue<Cell*>& queue, Cell* pCell){
     
     if(pCell && !pCell->isVisited() && !pCell->isWall()){
         
         pCell->mark();
-        queue.push(pCell);
+        queue.enqueue(pCell);
         
     }
 }
@@ -80,7 +73,7 @@ void Solver::showPaths(Table &matrix){
         std::cout<<"\n";
         showAllPaths(firstCell, endCell, matrix);
     }
-}
+ }
 
 void Solver::showAllPaths(Cell* startCell, Cell* endCell, Table &matrix){
    
@@ -97,6 +90,7 @@ void Solver::showAllPaths(Cell* startCell, Cell* endCell, Table &matrix){
     
     startCell->mark();
     for(int index = 0; index < 4; ++index){
+        
         
         if(matrix.validNextMove(startCell, index)){
             
@@ -125,18 +119,3 @@ void Solver::showCurrentPath(){
     std::cout<<"\n";
     
 }
-//
-//void Solver::resize(){
-//    
-//    this->numberOfPaths++;
-//    DinamicArray<Cell*>* newPaths = new DinamicArray<Cell*>[numberOfPaths];
-//    for(int index = 0; index < numberOfPaths - 1; ++index){
-//        
-//        newPaths[index] = this->paths[index];
-//    }
-//    
-//    delete [] paths;
-//    
-//    this->paths = newPaths;
-//}
-//

@@ -9,12 +9,11 @@
 #include "Table.hpp"
 
 
-int dx[] = {0,-1,0,1};
-int dy[] = {-1,0,1,0};
 
 
 Table::Table(){
-
+    
+    table = NULL;
 }
 
 Table::Table(int numOfRows, int numOfCols){
@@ -27,7 +26,7 @@ Table::Table(int numOfRows, int numOfCols){
 
 Table::~Table(){
     
-    this->releaseTable();
+   this->releaseTable();
 }
 
 Table::Table(Table const &other){
@@ -58,7 +57,7 @@ void Table::releaseTable(){
 
     for(int i = 0; i < rows; ++i){
        
-        delete[] table[i];
+        delete [] table[i];
     }
     
     delete[] table;

@@ -13,7 +13,7 @@
 #include "Solver.hpp"
 #include "Table.hpp"
 #include "Cell.hpp"
-#include "queue"
+#include "LinkedQueue.hpp"
 #include "DinamicArray.hpp"
 
 class Solver{
@@ -27,14 +27,13 @@ public:
     void showCurrentPath();
 private:
     
-    DinamicArray<Cell*> dArray; // масив с достижимите клетки
-    DinamicArray<Cell*> *paths; //всички пътища до дадена клетка
+    DinamicArray<Cell*> dArray; 
     DinamicArray<Cell*> currentPath;
     Cell* firstCell;
     int numberOfPaths;
     
     void showAllPaths(Cell* startCell, Cell* endCell, Table &matrix);
-    void addIfPossibleAndNotVissited(std::queue<Cell*>& queue, Cell* pCell);
+    void addIfPossibleAndNotVissited(LinkedQueue<Cell*>& queue, Cell* pCell);
     void resize();
 };
 #endif /* Solver_hpp */

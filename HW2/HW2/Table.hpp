@@ -11,10 +11,14 @@
 
 #include <iostream>
 #include "Cell.hpp"
+
+static int dx[] = {0,-1,0,1};
+static int dy[] = {-1,0,1,0};
+
 class Table{
     
     public:
-    
+
     Table();
     Table(int, int);
     ~Table();

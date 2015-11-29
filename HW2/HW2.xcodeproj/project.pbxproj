@@ -26,6 +26,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BD7384271C0B1F5C0036CC6F /* LinkedQueue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = LinkedQueue.hpp; sourceTree = "<group>"; };
 		BDA3B8141BFC98CD00CF71A3 /* Table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Table.cpp; sourceTree = "<group>"; };
 		BDA3B8151BFC98CD00CF71A3 /* Table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Table.hpp; sourceTree = "<group>"; };
 		BDA69E461BFC7A7D00166E3A /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cell.cpp; sourceTree = "<group>"; };
@@ -72,6 +73,7 @@
 				BDA3B8151BFC98CD00CF71A3 /* Table.hpp */,
 				BDA69E461BFC7A7D00166E3A /* Cell.cpp */,
 				BDA69E471BFC7A7D00166E3A /* Cell.hpp */,
+				BD7384271C0B1F5C0036CC6F /* LinkedQueue.hpp */,
 				BDE5A6A81BFF138F0029E88C /* DinamicArray.hpp */,
 				BDE5BC381C09E61300F9E361 /* Solver.cpp */,
 				BDE5BC391C09E61300F9E361 /* Solver.hpp */,
