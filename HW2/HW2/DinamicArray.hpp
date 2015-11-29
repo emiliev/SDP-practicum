@@ -25,12 +25,12 @@ class DinamicArray{
         void removeLastElement();
         size_t getLength();
         T getElementAtIndex(size_t index);
-        void free();
+        void reallocate(int newSize);
     private:
     
         T* data;
-        size_t length;
-        size_t allocatedSize;
+        int length;
+        int allocatedSize;
         void resize();
         void copyFrom(DinamicArray const &other);
         void destroy();
@@ -140,13 +140,29 @@ void DinamicArray<T>::destroy(){
 }
 
 template <typename T>
-void DinamicArray<T>::free(){
+void DinamicArray<T>::reallocate(int removedSize){
+
+    int newSize = length - removedSize;
+    T* newData = new T[newSize];
+    for(int index = 0; index < newSize; ++index){
     
-    for(int index = 1; index < length; ++index){
-        
-        data[index] = NULL;
-        length = 1;
+        newData[index] = data[index];
     }
+    
+    delete [] data;
+    
+    data = newData;
+    length = newSize;
+    allocatedSize = newSize;
 }
+
+
+
+
+
+
+
+
+
 
 #endif /* DinamicArray_hpp */

@@ -69,24 +69,29 @@ void Solver::addIfPossibleAndNotVissited(std::queue<Cell*>& queue, Cell* pCell){
 }
 
 
-void Solver::showPaths(Cell *startCell, Table &matrix){
+void Solver::showPaths(Table &matrix){
     
+    firstCell = dArray.getElementAtIndex(0);
+    currentPath.addElement(firstCell);
     for(int index = 1; index < dArray.getLength(); ++index){
         
         Cell *endCell = dArray.getElementAtIndex(index);
         endCell->print();
         std::cout<<"\n";
-        
-        showAllPaths(startCell, endCell, matrix);
-        showCurrentPath();
+        showAllPaths(firstCell, endCell, matrix);
     }
 }
 
 void Solver::showAllPaths(Cell* startCell, Cell* endCell, Table &matrix){
+   
+    static int numberOfMoves = 1;
     
     if(startCell->getRow() == endCell->getRow() && startCell->getCol() == endCell->getCol()){
         
-        resize();
+        showCurrentPath();
+        currentPath.reallocate(numberOfMoves);
+        currentPath.addElement(firstCell);
+        numberOfMoves = 1;
         return;
     }
     
@@ -98,9 +103,9 @@ void Solver::showAllPaths(Cell* startCell, Cell* endCell, Table &matrix){
             Cell* newCell = matrix.getElement(startCell->getRow() + dx[index], startCell->getCol() + dy[index]);
             if(!(newCell->isVisited() || newCell->isWall())) {
                 
-                paths[numberOfPaths - 1].addElement(newCell);
+                currentPath.addElement(newCell);
+                numberOfMoves++;
                 showAllPaths(newCell, endCell, matrix);
-
             }
             
         }
@@ -113,25 +118,25 @@ void Solver::showAllPaths(Cell* startCell, Cell* endCell, Table &matrix){
 
 void Solver::showCurrentPath(){
     
-    for(int index = 0; index < paths[numberOfPaths - 1].getLength(); ++index){
-        Cell *temp = paths[numberOfPaths - 1].getElementAtIndex(index);
+    for(int index = 0; index < currentPath.getLength(); ++index){
+        Cell *temp = currentPath.getElementAtIndex(index);
             temp->print();
     }
     std::cout<<"\n";
     
 }
-
-void Solver::resize(){
-    
-    this->numberOfPaths++;
-    DinamicArray<Cell*>* newPaths = new DinamicArray<Cell*>[numberOfPaths];
-    for(int index = 0; index < numberOfPaths - 1; ++index){
-        
-        newPaths[index] = this->paths[index];
-    }
-    
-    delete [] paths;
-    
-    this->paths = newPaths;
-}
-
+//
+//void Solver::resize(){
+//    
+//    this->numberOfPaths++;
+//    DinamicArray<Cell*>* newPaths = new DinamicArray<Cell*>[numberOfPaths];
+//    for(int index = 0; index < numberOfPaths - 1; ++index){
+//        
+//        newPaths[index] = this->paths[index];
+//    }
+//    
+//    delete [] paths;
+//    
+//    this->paths = newPaths;
+//}
+//

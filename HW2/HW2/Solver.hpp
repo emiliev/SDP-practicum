@@ -22,17 +22,19 @@ public:
     Solver();
     ~Solver();
     void getAllCells(Table matrix, Cell* startingCell);
-    void showPaths(Cell* startCell, Table &matrix);
+    void showPaths(Table &matrix);
     void showCells();
     void showCurrentPath();
 private:
     
     DinamicArray<Cell*> dArray; // масив с достижимите клетки
-    void addIfPossibleAndNotVissited(std::queue<Cell*>& queue, Cell* pCell);
     DinamicArray<Cell*> *paths; //всички пътища до дадена клетка
-    void showAllPaths(Cell* startCell, Cell* endCell, Table &matrix);
-   
+    DinamicArray<Cell*> currentPath;
+    Cell* firstCell;
     int numberOfPaths;
+    
+    void showAllPaths(Cell* startCell, Cell* endCell, Table &matrix);
+    void addIfPossibleAndNotVissited(std::queue<Cell*>& queue, Cell* pCell);
     void resize();
 };
 #endif /* Solver_hpp */
