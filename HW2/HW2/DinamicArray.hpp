@@ -148,7 +148,7 @@ void DinamicArray<T>::reallocate(int removedSize){
     
         newData[index] = data[index];
     }
-    
+   
     delete [] data;
     
     data = newData;
