@@ -18,9 +18,9 @@ int main(int argc, const char * argv[]) {
         intL.add(index);
     }
     
-//    intL.remove(9);
-//    intL.remove(5);
-//    
+    intL.remove(9);
+    intL.remove(5);
+    
     std::cout<<"after several deleted intems: \n";
     for(int index = 0; index < intL.getSize(); ++index){
         
