@@ -37,7 +37,18 @@ class HashTable{
     
         bool Erase(K _key){
             
-        //    long index = Hash::stringHash(_key) % capacity;
+            long index = Hash::stringHash(_key) % capacity;
+            LinkedList<Pair<K, V>>& row = hashTable[index];
+            for(int index = 0; index < row.getSize(); ++index){
+                
+                if(row.getAt(index).key == _key){
+                   
+                    std::cout<<row.getAt(index).value<<std::endl;
+                    row.removeElement(index);
+                    return true;
+                    
+                }
+            }
             
             return false;
         }
@@ -56,7 +67,7 @@ class HashTable{
                 }
             }
         
-            return NULL;
+            return 0;
         }
     
         void Store(K _key, V _value){

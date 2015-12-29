@@ -55,15 +55,19 @@ using namespace std;
 
 int main(int argc, const char * argv[]) {
     
-    char test[] = "tovaeshegda";
     char a[] = "gosho";
     HashTable<char*, int> phonebook(1000);
     phonebook.Store(a, 15);
-
+    phonebook.Store(a, 20);
     Pair<char*, int> *temp = phonebook.Load(a);
     cout<<"key : "<<temp->key<<" for value: "<<temp->value<<endl;
+    phonebook.Erase(a);
 
-    //cout<<temp.key<<"for value: "<<temp.value<<endl;
+    Pair<char*, int> *temp1 = phonebook.Load(a);
+    if(temp1){
+        
+        cout<<"key : "<<temp1->key<<" for value: "<<temp1->value<<endl;
+    }    //cout<<temp.key<<"for value: "<<temp.value<<endl;
 //    ofstream myfile;
 //    myfile.open ("example.txt");
 //    myfile << "Writing this to a file.\n";
