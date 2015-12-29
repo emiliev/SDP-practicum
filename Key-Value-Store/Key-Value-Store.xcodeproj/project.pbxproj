@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BD4095A91C31A17500E79C77 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD4095A81C31A17500E79C77 /* main.cpp */; };
+		BDC7FC901C32DEA00075EB41 /* Hash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDC7FC8E1C32DEA00075EB41 /* Hash.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,10 @@
 /* Begin PBXFileReference section */
 		BD4095A51C31A17500E79C77 /* Key-Value-Store */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Key-Value-Store"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD4095A81C31A17500E79C77 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		BDC7FC891C32D1DE0075EB41 /* HashTable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HashTable.hpp; sourceTree = "<group>"; };
+		BDC7FC8C1C32D4BF0075EB41 /* Pair.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Pair.hpp; sourceTree = "<group>"; };
+		BDC7FC8E1C32DEA00075EB41 /* Hash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hash.cpp; sourceTree = "<group>"; };
+		BDC7FC8F1C32DEA00075EB41 /* Hash.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Hash.hpp; sourceTree = "<group>"; };
 		BDF404771C32711A001A613A /* List.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = List.hpp; sourceTree = "<group>"; };
 		BDF4047A1C327171001A613A /* Node.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Node.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,6 +67,10 @@
 				BD4095A81C31A17500E79C77 /* main.cpp */,
 				BDF404771C32711A001A613A /* List.hpp */,
 				BDF4047A1C327171001A613A /* Node.hpp */,
+				BDC7FC891C32D1DE0075EB41 /* HashTable.hpp */,
+				BDC7FC8C1C32D4BF0075EB41 /* Pair.hpp */,
+				BDC7FC8E1C32DEA00075EB41 /* Hash.cpp */,
+				BDC7FC8F1C32DEA00075EB41 /* Hash.hpp */,
 			);
 			path = "Key-Value-Store";
 			sourceTree = "<group>";
@@ -123,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD4095A91C31A17500E79C77 /* main.cpp in Sources */,
+				BDC7FC901C32DEA00075EB41 /* Hash.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
