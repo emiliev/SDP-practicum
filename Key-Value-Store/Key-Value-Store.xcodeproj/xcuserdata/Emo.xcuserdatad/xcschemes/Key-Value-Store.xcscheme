@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BDA663B41C2E87D2000D502A"
-               BuildableName = "MemoryManager"
-               BlueprintName = "MemoryManager"
-               ReferencedContainer = "container:MemoryManager.xcodeproj">
+               BlueprintIdentifier = "BD4095A41C31A17500E79C77"
+               BuildableName = "Key-Value-Store"
+               BlueprintName = "Key-Value-Store"
+               ReferencedContainer = "container:Key-Value-Store.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDA663B41C2E87D2000D502A"
-            BuildableName = "MemoryManager"
-            BlueprintName = "MemoryManager"
-            ReferencedContainer = "container:MemoryManager.xcodeproj">
+            BlueprintIdentifier = "BD4095A41C31A17500E79C77"
+            BuildableName = "Key-Value-Store"
+            BlueprintName = "Key-Value-Store"
+            ReferencedContainer = "container:Key-Value-Store.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDA663B41C2E87D2000D502A"
-            BuildableName = "MemoryManager"
-            BlueprintName = "MemoryManager"
-            ReferencedContainer = "container:MemoryManager.xcodeproj">
+            BlueprintIdentifier = "BD4095A41C31A17500E79C77"
+            BuildableName = "Key-Value-Store"
+            BlueprintName = "Key-Value-Store"
+            ReferencedContainer = "container:Key-Value-Store.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDA663B41C2E87D2000D502A"
-            BuildableName = "MemoryManager"
-            BlueprintName = "MemoryManager"
-            ReferencedContainer = "container:MemoryManager.xcodeproj">
+            BlueprintIdentifier = "BD4095A41C31A17500E79C77"
+            BuildableName = "Key-Value-Store"
+            BlueprintName = "Key-Value-Store"
+            ReferencedContainer = "container:Key-Value-Store.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

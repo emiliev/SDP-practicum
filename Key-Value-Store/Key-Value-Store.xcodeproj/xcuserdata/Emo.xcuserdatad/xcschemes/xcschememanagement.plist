@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>MemoryManager.xcscheme</key>
+		<key>Key-Value-Store.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>BDA663B41C2E87D2000D502A</key>
+		<key>BD4095A41C31A17500E79C77</key>
 		<dict>
 			<key>primary</key>
 			<true/>

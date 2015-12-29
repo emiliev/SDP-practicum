@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BDA663B91C2E87D3000D502A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BDA663B81C2E87D3000D502A /* main.cpp */; };
+		BD4095A91C31A17500E79C77 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BD4095A81C31A17500E79C77 /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		BDA663B31C2E87D2000D502A /* CopyFiles */ = {
+		BD4095A31C31A17500E79C77 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -23,12 +23,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		BDA663B51C2E87D3000D502A /* MemoryManager */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MemoryManager; sourceTree = BUILT_PRODUCTS_DIR; };
-		BDA663B81C2E87D3000D502A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		BD4095A51C31A17500E79C77 /* Key-Value-Store */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Key-Value-Store"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD4095A81C31A17500E79C77 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		BDF404771C32711A001A613A /* List.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = List.hpp; sourceTree = "<group>"; };
+		BDF4047A1C327171001A613A /* Node.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Node.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BDA663B21C2E87D2000D502A /* Frameworks */ = {
+		BD4095A21C31A17500E79C77 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -38,94 +40,96 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BDA663AC1C2E87D2000D502A = {
+		BD40959C1C31A17500E79C77 = {
 			isa = PBXGroup;
 			children = (
-				BDA663B71C2E87D3000D502A /* MemoryManager */,
-				BDA663B61C2E87D3000D502A /* Products */,
+				BD4095A71C31A17500E79C77 /* Key-Value-Store */,
+				BD4095A61C31A17500E79C77 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		BDA663B61C2E87D3000D502A /* Products */ = {
+		BD4095A61C31A17500E79C77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BDA663B51C2E87D3000D502A /* MemoryManager */,
+				BD4095A51C31A17500E79C77 /* Key-Value-Store */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BDA663B71C2E87D3000D502A /* MemoryManager */ = {
+		BD4095A71C31A17500E79C77 /* Key-Value-Store */ = {
 			isa = PBXGroup;
 			children = (
-				BDA663B81C2E87D3000D502A /* main.cpp */,
+				BD4095A81C31A17500E79C77 /* main.cpp */,
+				BDF404771C32711A001A613A /* List.hpp */,
+				BDF4047A1C327171001A613A /* Node.hpp */,
 			);
-			path = MemoryManager;
+			path = "Key-Value-Store";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BDA663B41C2E87D2000D502A /* MemoryManager */ = {
+		BD4095A41C31A17500E79C77 /* Key-Value-Store */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BDA663BC1C2E87D3000D502A /* Build configuration list for PBXNativeTarget "MemoryManager" */;
+			buildConfigurationList = BD4095AC1C31A17500E79C77 /* Build configuration list for PBXNativeTarget "Key-Value-Store" */;
 			buildPhases = (
-				BDA663B11C2E87D2000D502A /* Sources */,
-				BDA663B21C2E87D2000D502A /* Frameworks */,
-				BDA663B31C2E87D2000D502A /* CopyFiles */,
+				BD4095A11C31A17500E79C77 /* Sources */,
+				BD4095A21C31A17500E79C77 /* Frameworks */,
+				BD4095A31C31A17500E79C77 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = MemoryManager;
-			productName = MemoryManager;
-			productReference = BDA663B51C2E87D3000D502A /* MemoryManager */;
+			name = "Key-Value-Store";
+			productName = "Key-Value-Store";
+			productReference = BD4095A51C31A17500E79C77 /* Key-Value-Store */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		BDA663AD1C2E87D2000D502A /* Project object */ = {
+		BD40959D1C31A17500E79C77 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Emil Iliev";
 				TargetAttributes = {
-					BDA663B41C2E87D2000D502A = {
+					BD4095A41C31A17500E79C77 = {
 						CreatedOnToolsVersion = 7.2;
 					};
 				};
 			};
-			buildConfigurationList = BDA663B01C2E87D2000D502A /* Build configuration list for PBXProject "MemoryManager" */;
+			buildConfigurationList = BD4095A01C31A17500E79C77 /* Build configuration list for PBXProject "Key-Value-Store" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = BDA663AC1C2E87D2000D502A;
-			productRefGroup = BDA663B61C2E87D3000D502A /* Products */;
+			mainGroup = BD40959C1C31A17500E79C77;
+			productRefGroup = BD4095A61C31A17500E79C77 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BDA663B41C2E87D2000D502A /* MemoryManager */,
+				BD4095A41C31A17500E79C77 /* Key-Value-Store */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BDA663B11C2E87D2000D502A /* Sources */ = {
+		BD4095A11C31A17500E79C77 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BDA663B91C2E87D3000D502A /* main.cpp in Sources */,
+				BD4095A91C31A17500E79C77 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		BDA663BA1C2E87D3000D502A /* Debug */ = {
+		BD4095AA1C31A17500E79C77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -168,7 +172,7 @@
 			};
 			name = Debug;
 		};
-		BDA663BB1C2E87D3000D502A /* Release */ = {
+		BD4095AB1C31A17500E79C77 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -204,14 +208,14 @@
 			};
 			name = Release;
 		};
-		BDA663BD1C2E87D3000D502A /* Debug */ = {
+		BD4095AD1C31A17500E79C77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		BDA663BE1C2E87D3000D502A /* Release */ = {
+		BD4095AE1C31A17500E79C77 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -221,24 +225,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BDA663B01C2E87D2000D502A /* Build configuration list for PBXProject "MemoryManager" */ = {
+		BD4095A01C31A17500E79C77 /* Build configuration list for PBXProject "Key-Value-Store" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BDA663BA1C2E87D3000D502A /* Debug */,
-				BDA663BB1C2E87D3000D502A /* Release */,
+				BD4095AA1C31A17500E79C77 /* Debug */,
+				BD4095AB1C31A17500E79C77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BDA663BC1C2E87D3000D502A /* Build configuration list for PBXNativeTarget "MemoryManager" */ = {
+		BD4095AC1C31A17500E79C77 /* Build configuration list for PBXNativeTarget "Key-Value-Store" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BDA663BD1C2E87D3000D502A /* Debug */,
-				BDA663BE1C2E87D3000D502A /* Release */,
+				BD4095AD1C31A17500E79C77 /* Debug */,
+				BD4095AE1C31A17500E79C77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = BDA663AD1C2E87D2000D502A /* Project object */;
+	rootObject = BD40959D1C31A17500E79C77 /* Project object */;
 }
