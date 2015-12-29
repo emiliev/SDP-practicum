@@ -19,14 +19,13 @@ class HashTable{
 
     public:
     
-        LinkedList<Pair<K,V>>* hashTable;
         HashTable(size_t _capacity){
             
             setCapacity(_capacity);
             hashTable = new LinkedList<Pair<K, V>>[capacity];
 
         }
-        ~HashTable(){
+        virtual~HashTable(){
             
             delete [] hashTable;
         }
@@ -36,19 +35,34 @@ class HashTable{
             return this->capacity;
         }
     
-        bool Erase(K key){
+        bool Erase(K _key){
+            
+        //    long index = Hash::stringHash(_key) % capacity;
             
             return false;
         }
     
-        bool Load(K key, size_t sizeOfLoad, V& value){
+        Pair<K,V>* Load(K _key){
     
+            long index = Hash::stringHash(_key) % capacity;
+            LinkedList<Pair<K, V>>& row = hashTable[index];
+        
+            std::cout<<"row "<< index<<" size: "<<row.getSize()<<std::endl;
+            for(int index = 0; index < row.getSize(); ++index){
+                
+                if(row.getAt(index).key == _key){
+                    
+                    return &row.getAt(index);
+                }
+            }
+        
+            return NULL;
         }
     
         void Store(K _key, V _value){
             
             long index = Hash::stringHash(_key) % capacity;
-            LinkedList<Pair<K, V>> row = hashTable[index];
+            LinkedList<Pair<K, V>>& row = hashTable[index];
             Pair<K,V> pair;
             pair.key = _key;
             pair.value = _value;
@@ -57,8 +71,8 @@ class HashTable{
         }
     private:
     
+        LinkedList<Pair<K,V>>* hashTable;
         size_t capacity;
-
     
         void setCapacity(size_t _capacity){
             

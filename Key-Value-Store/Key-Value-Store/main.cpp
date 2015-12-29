@@ -53,27 +53,17 @@ using namespace std;
 //    cout<<numb<<" bytnat v long\n";
 //}
 
-bool Load(char* pKey, char*& info,size_t& size){
-
-    return true;
-}
-
-bool Erase(char* pKey){
-    
-    return true;
-}
-
-
-
-
 int main(int argc, const char * argv[]) {
     
     char test[] = "tovaeshegda";
     char a[] = "gosho";
     HashTable<char*, int> phonebook(1000);
     phonebook.Store(a, 15);
-    
-//cout<<temp.key<<"for value: "<<temp.value<<endl;
+
+    Pair<char*, int> *temp = phonebook.Load(a);
+    cout<<"key : "<<temp->key<<" for value: "<<temp->value<<endl;
+
+    //cout<<temp.key<<"for value: "<<temp.value<<endl;
 //    ofstream myfile;
 //    myfile.open ("example.txt");
 //    myfile << "Writing this to a file.\n";

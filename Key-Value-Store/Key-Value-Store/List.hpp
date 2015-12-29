@@ -18,7 +18,7 @@ class LinkedList{
     public:
     
         LinkedList();
-        ~LinkedList();
+        virtual ~LinkedList();
         void addElement(T value);
         void removeElement(int index);
         T& getAt(int index);
