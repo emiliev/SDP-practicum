@@ -30,6 +30,7 @@
 		BDC7FC8C1C32D4BF0075EB41 /* Pair.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Pair.hpp; sourceTree = "<group>"; };
 		BDC7FC8E1C32DEA00075EB41 /* Hash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hash.cpp; sourceTree = "<group>"; };
 		BDC7FC8F1C32DEA00075EB41 /* Hash.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Hash.hpp; sourceTree = "<group>"; };
+		BDC7FC921C3340C10075EB41 /* FileManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileManager.hpp; sourceTree = "<group>"; };
 		BDF404771C32711A001A613A /* List.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = List.hpp; sourceTree = "<group>"; };
 		BDF4047A1C327171001A613A /* Node.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Node.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +72,7 @@
 				BDC7FC8C1C32D4BF0075EB41 /* Pair.hpp */,
 				BDC7FC8E1C32DEA00075EB41 /* Hash.cpp */,
 				BDC7FC8F1C32DEA00075EB41 /* Hash.hpp */,
+				BDC7FC921C3340C10075EB41 /* FileManager.hpp */,
 			);
 			path = "Key-Value-Store";
 			sourceTree = "<group>";

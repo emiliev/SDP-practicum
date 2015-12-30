@@ -56,10 +56,18 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     
     char a[] = "gosho";
+    
+    char names[][15] = {"gosho", "tosho", "pesho", "stoqn", "ceko", "mariqn", "emil", "geri", "nikol", "brat my ","kolyo"};
     HashTable<char*, int> phonebook(1000);
-    phonebook.Store(a, 15);
-    phonebook.Store(a, 20);
-    Pair<char*, int> *temp = phonebook.Load(a);
+    
+    for(int i = 0; i < 11; ++i){
+        for(int index = 0; index < 20; ++index){
+    
+            phonebook.Store(names[i], index);
+        }
+    }
+    
+    Pair<char*, int> *temp = phonebook.Load(names[0]);
     cout<<"key : "<<temp->key<<" for value: "<<temp->value<<endl;
     phonebook.Erase(a);
 
@@ -67,23 +75,27 @@ int main(int argc, const char * argv[]) {
     if(temp1){
         
         cout<<"key : "<<temp1->key<<" for value: "<<temp1->value<<endl;
-    }    //cout<<temp.key<<"for value: "<<temp.value<<endl;
+    }
+
+    
+//    
 //    ofstream myfile;
-//    myfile.open ("example.txt");
-//    myfile << "Writing this to a file.\n";
+//    myfile.open ("example.txt", ios::app);
+//    myfile << "Writing this to a file123.\n";
 //    myfile.close();
 //    
 //    char asd[100];
 //    ifstream i;
 //    i.open("example.txt");
 //    if(i){
-//    
-////        i>>asd;
-//  //      i.read(asd, 100);
+//        
+//        i.getline(asd, 100);
+//        cout<<asd;
 //    }
 //
+//    
 //    i.close();
-//       remove("example.txt");
-//    cout<<asd;
-//    return 0;
+
+
+    return 0;
 }

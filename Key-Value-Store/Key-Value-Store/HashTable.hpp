@@ -13,7 +13,9 @@
 #include "List.hpp"
 #include "Pair.hpp"
 #include "Hash.hpp"
+#include "FileManager.hpp"
 #include <iostream>
+
 template <typename K, typename V>
 class HashTable{
 
@@ -63,6 +65,7 @@ class HashTable{
                 
                 if(row.getAt(index).key == _key){
                     
+                    std::cout<<"vrushtam\n";
                     return &row.getAt(index);
                 }
             }
@@ -78,6 +81,9 @@ class HashTable{
             pair.key = _key;
             pair.value = _value;
             row.addElement(pair);
+            
+            FileManager<K, V>::writeToFile(_key, _value);
+            
             std::cout<<pair.key<<" for value: "<<pair.value<<" at index: "<<index<<std::endl;
         }
     private:
