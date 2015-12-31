@@ -64,20 +64,18 @@ int main(int argc, const char * argv[]) {
             
                 input>>word;
                 strcat(word,names[index]);
-                phonebook.Store(word, generator++);
+               // phonebook.Store(word, generator++);
 
             }
         }
             input.close();
     }
-    Pair<char*, int> *temp = phonebook.Load(word);
-
-    if(temp){
-        
-        cout<<"found it for: "<<(clock() - begin_time) / CLOCKS_PER_SEC<<endl;
-        cout<<temp->key<<" for value: "<<temp->value<<endl;
-    }
+    Pair<char*, int> temp;
+    temp.key = word;
+    if(phonebook.searchInFile(temp)){
     
-//    test<char*>();
+        cout<<"found it for: "<<(clock() - begin_time) / CLOCKS_PER_SEC<<endl;
+        cout<<temp.key<<" for value: "<<temp.value<<endl;
+    }
     return 0;
 }
