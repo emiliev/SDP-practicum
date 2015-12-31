@@ -75,6 +75,8 @@ int main(int argc, const char * argv[]) {
     cin.getline(word, 32);
     Pair<char*, int> temp;
     temp.key = word;
+    
+    phonebook.Store(word, 16789);
     if(phonebook.Load(temp)){
     
         cout<<"found it for: "<<(clock() - begin_time) / CLOCKS_PER_SEC<<endl;

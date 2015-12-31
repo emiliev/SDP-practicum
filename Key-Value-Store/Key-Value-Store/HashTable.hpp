@@ -57,10 +57,15 @@ class HashTable{
   
     bool Load(Pair<K, V> &temp){
         
-        if(FileManager<K, V>::readFromFile(temp.key, temp.value)){
+        if(checkInMemory(temp.key, temp.value)){
+
+            return true;
+        }
+        else if(FileManager<K, V>::readFromFile(temp.key, temp.value)){
             
             return true;
         }
+        
         return false;
     }
     
@@ -90,6 +95,23 @@ class HashTable{
                 
                 this->capacity = 1;
             }
+        }
+    
+        bool checkInMemory(K _key, V& _value){
+            
+            long index = Hash::stringHash(_key) % capacity;
+            LinkedList<Pair<K, V>>& row = hashTable[index];
+            for(int index = 0; index < row.getSize(); ++index){
+                
+                if(row.getAt(index).key == _key){
+                    
+                    _value = row.getAt(index).value;
+                    return true;
+                    
+                }
+            }
+            
+            return false;
         }
 };
 #endif /* HashTable_hpp */
