@@ -19,6 +19,8 @@ class LinkedList{
     
         LinkedList();
         virtual ~LinkedList();
+        LinkedList(LinkedList const &other);
+        LinkedList& operator=(LinkedList const &other);
         void addElement(T value);
         void removeElement(int index);
         T& getAt(int index);
@@ -30,7 +32,8 @@ class LinkedList{
         size_t listSize;
     
         bool isValidIndex(int index);
-    
+        void copyFrom(LinkedList const &other);
+        void del();
 };
 
 template <typename T>
@@ -121,13 +124,24 @@ LinkedList<T>::LinkedList(){
 template <typename T>
 LinkedList<T>::~LinkedList(){
     
-    Node<T>* pNode = start;
-    while (pNode) {
-        
-        Node<T>* temp = pNode;
-        pNode = pNode->pNext;
-        delete temp;
+    del();
+}
+
+template <typename T>
+LinkedList<T>::LinkedList(LinkedList const &other){
+    
+    copyFrom(other);
+}
+
+template <typename T>
+LinkedList<T>& LinkedList<T>::operator=(LinkedList<T> const &other){
+    
+    if(this != &other){
+        del();
+        copyFrom(other);
     }
+    
+    return *this;
 }
 
 template <typename T>
@@ -145,6 +159,52 @@ bool LinkedList<T>::isValidIndex(int index){
     }
     
     return true;
+}
+
+template <typename T>
+void LinkedList<T>::copyFrom(LinkedList<T> const &other){
+    
+    
+    Node<T>* temp = other.start;
+    
+    if(temp){
+        
+        start = new Node<T>;
+        start->data = temp->data;
+        start->pNext = NULL;
+        end = start;
+        temp = temp->pNext;
+        
+    }
+    
+    while (temp) {
+        
+        Node<T>* node = new Node<T>;
+        node->data = temp->data;
+        node->pNext = NULL;
+        end->pNext = node;
+        end = node;
+        
+        temp = temp->pNext;
+    }
+    
+    listSize = other.listSize;
+    
+}
+
+template <typename T>
+void LinkedList<T>::del(){
+    Node<T>* pNode = start;
+    while (pNode) {
+        
+        Node<T>* temp = pNode;
+        pNode = pNode->pNext;
+        delete temp;
+    }
+    
+    start = NULL;
+    end = NULL;
+    listSize = 0;
 }
 
 #endif /* List_hpp */

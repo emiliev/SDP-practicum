@@ -56,20 +56,45 @@ class HashTable{
         }
     
         Pair<K,V>* Load(K _key){
-    
+            
             long index = Hash::stringHash(_key) % capacity;
-            LinkedList<Pair<K, V>>& row = hashTable[index];
-        
+            char fileName[256];
+            char keyBuffer[100];
+            sprintf(fileName,"%ld", index);
+            strcat(fileName, ".dat");
+            std::ifstream input(fileName, std::ios::binary);
+            LinkedList<Pair<K,V>> row;
+            
+
+            if(input){
+
+                while (!input.eof()) {
+                    Pair<K,V> pair;
+                    K newKey;
+                    V newValue;
+                    int lengthOfKey;
+                    input.read((char*)&lengthOfKey, sizeof(lengthOfKey));
+                    input.read(keyBuffer, lengthOfKey);
+                    newKey = reinterpret_cast<K>(keyBuffer);
+                    input.read((char*)&newValue, sizeof(newValue));
+                    std::cout<<newKey<<" "<<newValue<<std::endl;
+                    pair.key = newKey;
+                    pair.value = newValue;
+                    row.addElement(pair);
+                }
+            }
+
+            hashTable[index] = row;
             std::cout<<"row "<< index<<" size: "<<row.getSize()<<std::endl;
             for(int index = 0; index < row.getSize(); ++index){
-                
-                if(row.getAt(index).key == _key){
+                std::cout<<row.getAt(index).key<<" "<<_key<<'\n';
+                if(strcmp(row.getAt(index).key,_key) == 0){
                     
                     std::cout<<"vrushtam\n";
                     return &row.getAt(index);
                 }
             }
-        
+            
             return 0;
         }
     
@@ -81,16 +106,13 @@ class HashTable{
             pair.key = _key;
             pair.value = _value;
             row.addElement(pair);
-            
+
             FileManager<K, V>::writeToFile(_key, _value);
-            
-            std::cout<<pair.key<<" for value: "<<pair.value<<" at index: "<<index<<std::endl;
         }
     private:
     
         LinkedList<Pair<K,V>>* hashTable;
         size_t capacity;
-    
         void setCapacity(size_t _capacity){
             
             if(_capacity > 0){

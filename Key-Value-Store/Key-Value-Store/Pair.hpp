@@ -10,11 +10,20 @@
 #define Pair_hpp
 
 #include <stdio.h>
+#include <cstring>
 template <typename K, typename V>
 class Pair{
     
     public:
         K key;
         V value;
+
+    void setValue(K type){
+        
+        key = type;
+    }
 };
+
+
+
 #endif /* Pair_hpp */

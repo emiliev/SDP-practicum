@@ -12,90 +12,72 @@
 #include "List.hpp"
 #include "HashTable.hpp"
 #include "Pair.hpp"
+#include "FileManager.hpp"
 using namespace std;
 
-//void Store(char* info, size_t size){
-//    
-//   
-//    long index = stringHash(info, size);
-//    char place[32];
-//    sprintf(place, "%ld", index);
-//    cout<<place<<endl;
-//    
-//    char key[11] = "ABCDEFGHIJ";
-//    
-//    
-//    
-//    
-//   // decrypt(&place);
-//    int counter  = 0;
-//    for(int index = 0; index < strlen(place); ++index){
-//        
-//        place[index] = place[index]^key[counter++];
-//        
-//        if (counter % 11 == 0) {
-//            counter = 0;
-//        }
-//    }
-//    
-//    counter = 0;
-//    for(int index = 0; index < strlen(place); ++index){
-//        
-//        place[index] = place[index]^key[counter++];
-//        
-//        if (counter % 11 == 0) {
-//            counter = 0;
-//        }
-//    }
-//    char* pend;
-//    long numb;
-//    numb = strtol(place, &pend, 10);
-//    cout<<numb<<" bytnat v long\n";
-//}
-
-int main(int argc, const char * argv[]) {
+template <typename T>
+void test(){
     
-    char a[] = "gosho";
     
-    char names[][15] = {"gosho", "tosho", "pesho", "stoqn", "ceko", "mariqn", "emil", "geri", "nikol", "brat my ","kolyo"};
-    HashTable<char*, int> phonebook(1000);
+    char names[][10] = {"ala", "bala"};
+    ofstream i1("example1.dat", ios::binary);
+    for(int index = 0; index < 2; ++index){
+        
+        int length = strlen(names[index]);;
+        i1.write((char*)&length, sizeof(length));
+        i1.write(names[index], strlen(names[index]));
+    }
+    i1.close();
     
-    for(int i = 0; i < 11; ++i){
-        for(int index = 0; index < 20; ++index){
-    
-            phonebook.Store(names[i], index);
+    T type;
+    ifstream i("example1.dat", ios::binary);
+    if(i){
+        
+        while (!i.eof()) {
+            
+            int digit;
+            i.read((char*)&digit, sizeof(digit));
+            char *buffer = new char[digit];
+            i.read(buffer,digit);
+            type = reinterpret_cast<T>(buffer);
+            cout<<type<<endl;
+            
+            delete [] buffer;
         }
     }
+    i.close();
+}
+int main(int argc, const char * argv[]) {
     
-    Pair<char*, int> *temp = phonebook.Load(names[0]);
-    cout<<"key : "<<temp->key<<" for value: "<<temp->value<<endl;
-    phonebook.Erase(a);
+    HashTable<char*, int> phonebook(1000);
+    int generator = 0;
+    char names[][10] = {"geri", "nikol", "gosho", "pesho", "bogdan", "emil", "miroslav", "slavcho", "petran"};
+    char word[32] ;
 
-    Pair<char*, int> *temp1 = phonebook.Load(a);
-    if(temp1){
+    std::clock_t begin_time = clock();
+    for (int index = 0; index < 10; ++index){
+        ifstream input("example.txt");
+    
+        if(input){
         
-        cout<<"key : "<<temp1->key<<" for value: "<<temp1->value<<endl;
+            while (!input.eof()) {
+            
+                input>>word;
+                strcat(word,names[index]);
+                phonebook.Store(word, generator++);
+
+            }
+        }
+            input.close();
     }
+    Pair<char*, int> *temp = phonebook.Load(word);
 
+    if(temp){
+        
+        cout<<"found it for: "<<(clock() - begin_time) / CLOCKS_PER_SEC<<endl;
+        cout<<temp->key<<" for value: "<<temp->value<<endl;
+    }
     
-//    
-//    ofstream myfile;
-//    myfile.open ("example.txt", ios::app);
-//    myfile << "Writing this to a file123.\n";
-//    myfile.close();
-//    
-//    char asd[100];
-//    ifstream i;
-//    i.open("example.txt");
-//    if(i){
-//        
-//        i.getline(asd, 100);
-//        cout<<asd;
-//    }
-//
-//    
-//    i.close();
-
-
+//    test<char*>();
     return 0;
 }
