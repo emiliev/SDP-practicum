@@ -14,7 +14,6 @@
 #include <cstring>
 #include "Hash.hpp"
 #include <iostream>
-#include "Pair.hpp"
 template <typename K, typename V>
 class FileManager{
     
@@ -26,7 +25,7 @@ class FileManager{
         char fileName[256];
         sprintf(fileName,"%ld", index);
         strcat(fileName, ".dat");
-        std::ofstream output(fileName, std::ios::binary);
+        std::ofstream output(fileName, std::ios::binary | std::ios::app);
         if(output){
             
             int keyLength = strlen(_key);
@@ -38,31 +37,44 @@ class FileManager{
         output.close();
     }
     
-    LinkedList<Pair<K,V>>& readFromFile(K _key){
+    static bool readFromFile(K _key, V& _value){
         
         long index = Hash::stringHash(_key) % 1000;
         char fileName[256];
+        char keyBuffer[100];
         sprintf(fileName,"%ld", index);
         strcat(fileName, ".dat");
         std::ifstream input(fileName, std::ios::binary);
-        K nKey;
-        V nValue;
-        LinkedList<Pair<K, V>>* temp;
-        if(input){
+        bool isFound = false;
         
+        
+        if(input){
+            
             while (!input.eof()) {
                 
-                Pair<K,V> pair;
-                input>>nKey>>nValue;
-                pair.key = nKey;
-                pair.value = nValue;
-                temp->addElement(pair);
-                std::cout<<pair.key<<" "<<pair.value<<std::endl;
+                memset(keyBuffer, 0, sizeof(keyBuffer));
+                std::cout<<keyBuffer<<'\n';
+                K tempKey;
+                V newValue;
+                int lengthOfKey;
+                input.read((char*)&lengthOfKey, sizeof(lengthOfKey));
+                input.read(keyBuffer, lengthOfKey);
+                std::cout<<keyBuffer<<std::endl;
+                tempKey = reinterpret_cast<K>(keyBuffer);
+                input.read((char*)&newValue, sizeof(newValue));
+                
+                if(strcmp(tempKey,_key) == 0){
+                    
+                    _value = newValue;
+                    isFound = true;
+                    break;
+                }
+
             }
         }
         
         input.close();
-        return *temp;
+        return isFound;
     }
 };
 #endif /* FileManager_hpp */

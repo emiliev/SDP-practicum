@@ -55,90 +55,14 @@ class HashTable{
             return false;
         }
   
-    bool searchInFile(Pair<K, V> &temp){
+    bool Load(Pair<K, V> &temp){
         
-        K _key = temp.key;
-        long index = Hash::stringHash(_key) % capacity;
-        char fileName[256];
-        char keyBuffer[100];
-        sprintf(fileName,"%ld", index);
-        strcat(fileName, ".dat");
-        std::ifstream input(fileName, std::ios::binary);
-        bool isFound = false;
-        
-
-        if(input){
+        if(FileManager<K, V>::readFromFile(temp.key, temp.value)){
             
-            while (!input.eof()) {
-
-                K newKey;
-                V newValue;
-                int lengthOfKey;
-                input.read((char*)&lengthOfKey, sizeof(lengthOfKey));
-                input.read(keyBuffer, lengthOfKey);
-                newKey = reinterpret_cast<K>(keyBuffer);
-                input.read((char*)&newValue, sizeof(newValue));
-               
-                std::cout<<newKey<<" "<<newValue<<std::endl;
-                if(strcmp(newKey,_key) == 0){
-                    
-                    temp.value = newValue;
-                    isFound = true;
-                    break;
-                }
-            }
+            return true;
         }
-        
-        input.close();
-        return isFound;
+        return false;
     }
-    
-       Pair<K,V>* Load(K _key){
-//            
-//            Pair<K,V> temp;
-//            temp.key = _key;
-//            searchInFile(temp.key, temp.value);
-//            long index = Hash::stringHash(_key) % capacity;
-//            char fileName[256];
-//            char keyBuffer[100];
-//            sprintf(fileName,"%ld", index);
-//            strcat(fileName, ".dat");
-//            std::ifstream input(fileName, std::ios::binary);
-//            LinkedList<Pair<K,V>>* row;
-//            
-//
-//            if(input){
-//
-//                while (!input.eof()) {
-//                    Pair<K,V> pair;
-//                    K newKey;
-//                    V newValue;
-//                    int lengthOfKey;
-//                    input.read((char*)&lengthOfKey, sizeof(lengthOfKey));
-//                    input.read(keyBuffer, lengthOfKey);
-//                    newKey = reinterpret_cast<K>(keyBuffer);
-//                    input.read((char*)&newValue, sizeof(newValue));
-//                    std::cout<<newKey<<" "<<newValue<<std::endl;
-//                    pair.key = newKey;
-//                    pair.value = newValue;
-//                    row->addElement(pair);
-//                }
-//            }
-//            
-//            hashTable[index] = *row;
-//            std::cout<<"row "<< index<<" size: "<<row->getSize()<<std::endl;
-//            for(int index = 0; index < row->getSize(); ++index){
-//                std::cout<<row->getAt(index).key<<" "<<_key<<'\n';
-//                if(strcmp(row->getAt(index).key,_key) == 0){
-//                    
-//                    std::cout<<"vrushtam\n";
-//                    return &row->getAt(index);
-//                }
-//            }
-            
-            return NULL;
-
-        }
     
         void Store(K _key, V _value){
             

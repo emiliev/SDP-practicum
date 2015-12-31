@@ -55,24 +55,27 @@ int main(int argc, const char * argv[]) {
     char word[32] ;
 
     std::clock_t begin_time = clock();
-    for (int index = 0; index < 10; ++index){
-        ifstream input("example.txt");
+//    for (int index = 0; index < 10; ++index){
+//        ifstream input("example.txt");
+//    
+//        if(input){
+//        
+//            while (!input.eof()) {
+//            
+//                input>>word;
+//                strcat(word,names[index]);
+//                cout<<word<<endl;
+//               // phonebook.Store(word, generator++);
+//
+//            }
+//        }
+//            input.close();
+//    }
     
-        if(input){
-        
-            while (!input.eof()) {
-            
-                input>>word;
-                strcat(word,names[index]);
-               // phonebook.Store(word, generator++);
-
-            }
-        }
-            input.close();
-    }
+    cin.getline(word, 32);
     Pair<char*, int> temp;
     temp.key = word;
-    if(phonebook.searchInFile(temp)){
+    if(phonebook.Load(temp)){
     
         cout<<"found it for: "<<(clock() - begin_time) / CLOCKS_PER_SEC<<endl;
         cout<<temp.key<<" for value: "<<temp.value<<endl;
