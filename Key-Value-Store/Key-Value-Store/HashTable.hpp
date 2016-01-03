@@ -39,6 +39,8 @@ class HashTable{
     
         bool Erase(K _key){
             
+            
+            FileManager<K, V>::deleteFromFile(_key);
             long index = Hash::stringHash(_key) % capacity;
             LinkedList<Pair<K, V>>& row = hashTable[index];
             for(int index = 0; index < row.getSize(); ++index){

@@ -31,6 +31,7 @@
 		BDC7FC8E1C32DEA00075EB41 /* Hash.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hash.cpp; sourceTree = "<group>"; };
 		BDC7FC8F1C32DEA00075EB41 /* Hash.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Hash.hpp; sourceTree = "<group>"; };
 		BDC7FC921C3340C10075EB41 /* FileManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FileManager.hpp; sourceTree = "<group>"; };
+		BDEDBFE41C391DA60062413D /* example1.dat */ = {isa = PBXFileReference; lastKnownFileType = file; path = example1.dat; sourceTree = "<group>"; };
 		BDF404771C32711A001A613A /* List.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = List.hpp; sourceTree = "<group>"; };
 		BDF4047A1C327171001A613A /* Node.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Node.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +66,7 @@
 		BD4095A71C31A17500E79C77 /* Key-Value-Store */ = {
 			isa = PBXGroup;
 			children = (
+				BDEDBFE41C391DA60062413D /* example1.dat */,
 				BD4095A81C31A17500E79C77 /* main.cpp */,
 				BDF404771C32711A001A613A /* List.hpp */,
 				BDF4047A1C327171001A613A /* Node.hpp */,
