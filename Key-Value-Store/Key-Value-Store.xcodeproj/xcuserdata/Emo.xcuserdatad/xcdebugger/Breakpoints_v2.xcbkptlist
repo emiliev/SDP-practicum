@@ -122,29 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Key-Value-Store/main.cpp"
-            timestampString = "473510489.850874"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "test()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Key-Value-Store/main.cpp"
             timestampString = "473511025.875766"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "126"
-            endingLineNumber = "126"
-            landmarkName = "main(int argc, const char * argv[])"
-            landmarkType = "7">
+            endingLineNumber = "126">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
