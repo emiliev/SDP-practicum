@@ -27,6 +27,12 @@ class Node{
             size = 0;
         }
     
+    
+        Node(){
+            
+            size = 0;
+        }
+    
 };
 
 #endif /* Node_hpp */
