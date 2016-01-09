@@ -10,67 +10,44 @@
 #include "GeneralTree.hpp"
 
 using namespace std;
-
-
-//void moveTo(char*& ptr, int data){
-//    
-//    int keeper = 0;
-//    int nodeValue = 0;
-//    while (*ptr) {
-//        
-//        
-//        if(*ptr == '('){
-//            ptr++;
-//            nodeValue = atoi(ptr);
-//            cout<<"entering node with  value: "<<nodeValue<<" this node is at place "<<keeper<<" in parrent array"<<"\n";
-//        }
-//        
-//        else if(*ptr == ')'){
-//            
-//            cout<<"exiting node at index : "<<keeper++<<"\n";
-//        }
-//        
-//        else if(*ptr == '{'){
-//            cout<<"Start looking for descendants of "<<nodeValue<<'\n';
-//            ptr++;
-//            moveTo(ptr, nodeValue);
-//        }
-//        
-//        else if (*ptr == '}'){
-//            cout<<"End with looking for descendats of this element "<<data<<"\n";
-//           
-//            return;
-//        }
-//    
-//            ptr++;
-//    
-//    }
-//}
-//
-//void moveToNext(char*& ptr){
-//    
-//    moveTo(ptr, 0);
-//}
-
+const size_t kMaxLength = 256;
 int main(int argc, const char * argv[]) {
     
-    //GeneralTree<int> tree(0);
     
-//    for(int index = 0; index < 10; ++index){
-//        if(index != 0 && index % 5 == 0){
-//            tree.moveToIndex(0);
-//        }
-//        tree.addChild(index);
-//    }
-//    
-//    tree.printAll();
-//    
+                    //Test strings//
     
-    GeneralTree<int> tree;
-    char text[] = "(5{(9{})(1{(4{})(12{})(42{})})})";
+//    char text[]  = "(5{(9{})(1{(4{})(12{})(42{})})})";
+//    char text1[] = "(7{(15{(7{})(10{})(8{})})(3{})})";
+    
+    char text[kMaxLength];
+    std::cout<<"Enter 1st text: ";
+    cin.getline(text, kMaxLength);
+    
+    char text1[kMaxLength];
+    std::cout<<"Enter 2nd text: ";
+    cin.getline(text1, kMaxLength);
+
     char* ptr = text;
-    
-    tree.moveToNext(ptr);
+    GeneralTree<int> tree;
+    tree.generateTree(ptr);
     tree.printAll();
+    
+    cout<<std::endl;
+    
+    char* ptr1 = text1;
+    GeneralTree<int> other;
+    other.generateTree(ptr1);
+    other.printAll();
+    cout<<std::endl;
+    
+    if(tree.isIsomorph(other)){
+        
+        cout<<"YES\n";
+    }
+    
+    else{
+        
+        cout<<"NO\n";
+    }
     return 0;
 }

@@ -18,56 +18,100 @@ class GeneralTree{
 public:
     
     GeneralTree(){
-        root = new Node<T>;
-        root->size = 0;
-        start = root;
+
+        root = NULL;
+        numberOfDescendants = 0;
     }
     
     GeneralTree(size_t value){
         
         root = new Node<T>(value);
-        start = root;
     }
     
     ~GeneralTree(){
         
+        delTree(root);
     }
     
-    Node<T>* root;
-    Node<T>* start;
     void addChild(size_t value){
         
         Node<T>* temp = new Node<T>(value);
-        root->size++;
         root->children.addElement(temp);
     }
     
-    void moveToIndex(int index){
+    void moveToChildAtIndex(int index){
         
         root = root->children.getElementAtIndex(index);
     }
     
     void printAll(){
         
-        privatePrint(start);
+        privatePrint(root);
+        std::cout<<"\n";
     }
     
-    void moveToNext(char*& ptr){
+    void generateTree(char*& ptr){
         
-        moveTo(ptr, 0);
+        privateGenerateTree(ptr, 0);
+    }
+    
+    bool isIsomorph(GeneralTree const & other){
+    
+        if(numberOfDescendants == other.numberOfDescendants){
+            Node<T>* treeOne = root;
+            Node<T>* treeTwo = other.root;
+          return check(treeOne , treeTwo);
+        }
+       
+        return false;
+
     }
     
     private:
+    
+    Node<T>* root;
+    int numberOfDescendants;
+    
+    bool check(Node<T>*& r, Node<T>*& r1){
+    
+        static bool match = false;
+        
+        if(r->children.getLength() != r1->children.getLength()){
 
-    void moveTo(char*& ptr, int data){
+            return false;
+        }
+        
+        
+        size_t treeOneLength = r->children.getLength();
+        size_t treeTwoLength = r1->children.getLength();
+        for(int index = 0; index < treeOneLength; ++index){
+            for(int elem = 0; elem < treeTwoLength; ++elem){
+                
+                Node<T>* temp = r->children.getElementAtIndex(index);
+                Node<T>* temp1 = r1->children.getElementAtIndex(elem);
+             
+                check(temp,temp1);
+            }
+        }
+        
+        if(r->children.getLength() == r1->children.getLength()){
+            
+            return match = true;
+        }
+        return match;
+    }
+    
+    void privateGenerateTree(char*& ptr, int data){
         
         int keeper = 0;
         int nodeValue = 0;
         Node<T>* currentState;
+        numberOfDescendants++;
         while (*ptr) {
         
         
             if(*ptr == '('){
+               
                 ptr++;
                 nodeValue = atoi(ptr);
                 cout<<"entering node with  value: "<<nodeValue<<" this node is at place "<<keeper<<" in parrent array"<<"\n";
@@ -80,19 +124,25 @@ public:
         
             else if(*ptr == '{'){
                 cout<<"Start looking for descendants of "<<nodeValue<<'\n';
-                ptr++;
-                Node<T>* temp =new Node<T>(nodeValue);
-                root->children.addElement(temp);
-                currentState = root;
-                moveToIndex(keeper);
-                moveTo(ptr, nodeValue);
-                root = currentState;
+                if(root){
+                   
+                    ptr++;
+                    addChild(nodeValue);
+                    currentState = root;
+                    moveToChildAtIndex(keeper);
+                    privateGenerateTree(ptr, nodeValue);
+                    root = currentState;
+                }
+                else{
+                  
+                    root = new Node<T>(nodeValue);
+                }
                 
             }
         
             else if (*ptr == '}'){
                 cout<<"End with looking for descendats of this element "<<data<<"\n";
-                   
+
                 return;
             }
             
@@ -115,5 +165,18 @@ public:
         }
     }
     
+    void delTree(Node<T>* r){
+        
+        if(r){
+           
+            size_t length = r->children.getLength();
+            for(size_t index = 0; index < length; ++index){
+                
+                delTree(r->children.getElementAtIndex(index));
+            }
+            
+            delete r;
+        }
+    }
 };
 #endif /* GeneralTree_hpp */

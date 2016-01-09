@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hw4/GeneralTree.hpp"
-            timestampString = "473789594.517101"
+            timestampString = "474053689.49484"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "moveTo(char*&amp; ptr, int data)"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "check(Node&lt;T&gt;*&amp; r, Node&lt;T&gt;*&amp; r1)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Hw4/GeneralTree.hpp"
-            timestampString = "473885340.985469"
+            timestampString = "474053689.49484"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "privatePrint(Node&lt;T&gt;* r)"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "delTree(Node&lt;T&gt;* r)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
