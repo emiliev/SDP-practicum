@@ -30,7 +30,7 @@ void releaseMemory(char**& text, int _rows){
         delete text[index];
     }
     
-    delete text;
+    delete [] text;
 }
 
 

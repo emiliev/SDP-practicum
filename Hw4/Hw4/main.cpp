@@ -31,7 +31,7 @@ int main(int argc, const char * argv[]) {
     GeneralTree<int> tree;
     tree.generateTree(ptr);
     tree.printAll();
-    
+
     cout<<std::endl;
     
     char* ptr1 = text1;
