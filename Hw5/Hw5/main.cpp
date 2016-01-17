@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <fstream>
-#include "string.h"
+#include <string.h>
 #include "myString.hpp"
 #include "DinamicArray.hpp"
 #include <iomanip>
@@ -182,7 +182,6 @@ size_t** muliplyMatrix(size_t** firstMatrix, size_t** secondMatrix, size_t first
 void mostConenctions(size_t** matrix, size_t rows, size_t cols, DinamicArray<int>& dArray){
     
     size_t number = 0;
-    int r = 0, i = 0;
     for(int index = 0; index < rows; ++index){
         
         for(int elem = index; elem < cols; ++elem){
@@ -199,20 +198,64 @@ void mostConenctions(size_t** matrix, size_t rows, size_t cols, DinamicArray<int
                 number = matrix[index][elem];
                 dArray.addElement(index);
                 dArray.addElement(elem);
-                i = index;
-                r = elem;
+            }
+        }
+    }
+    cout<<number<<'\n';
+}
+
+float** FloydWarshall(size_t**& matrix, size_t digit){
+
+    float** dist = new float*[digit];
+    for(int index = 0; index < digit; ++index){
+        
+        dist[index] = new float[digit];
+        for(int elem = 0; elem < digit; ++elem){
+            
+            dist[index][elem] = matrix[index][elem];
+        }
+    }
+
+    for(int k = 0; k < digit; ++k){
+        
+        for(int i = 0; i < digit; ++i){
+            
+            for(int j = 0; j < digit; ++j){
                 
+                if(dist[i][k] > dist[i][k] + dist[k][j]){
+                    
+                    dist[i][j] = dist[k][j] + dist[i][k];
+                }
             }
         }
     }
     
-    cout<<number<<" "<<r<<" "<<i<<endl;
+    return dist;
+}
+
+float heighest(float** dist, size_t digit){
+    
+    float temp = 0;
+    float  num = 0;
+    for(int i = 0; i < digit; ++i){
+        
+        for(int j = 0; j < digit; ++j){
+            
+            temp +=dist[i][j];
+        }
+        temp = 1 / temp;
+        if(temp > num){
+            num = temp;
+        }
+    }
+    
+    return num;
 }
 
 int main(int argc, const char * argv[]) {
 
-    char path[256];
-    cin.getline(path, 256);
+    string path;
+    getline(cin,path);
     
     ifstream input(path);
     size_t numberOfCommas = 0;
@@ -254,6 +297,8 @@ int main(int argc, const char * argv[]) {
     size_t** PersonToPerson = muliplyMatrix(matrix, transposedMatrix, numberOfRows, numberOfCommas, numberOfCommas, numberOfRows);
     
     DinamicArray<int> connectionArray;
+   
+    //Group to Group - table
     for(int i = 0; i < numberOfCommas + 1; ++i){
         
         cout<<setw(15)<<groupList[i].getData()<<"\t";
@@ -277,9 +322,8 @@ int main(int argc, const char * argv[]) {
         int sp = connectionArray.getElementAtIndex(i + 1);
         cout<<groupList[fp + 1].getData()<<" - "<<groupList[sp + 1].getData()<<endl;
     }
-    
-    
-//    Person to Person
+ 
+//    Person to Person - results
     connectionArray.clear();
     cout<<endl<<"\tPeople with most common memberships: ";
     mostConenctions(PersonToPerson, numberOfRows, numberOfRows, connectionArray);
@@ -289,10 +333,23 @@ int main(int argc, const char * argv[]) {
         int sp = connectionArray.getElementAtIndex(i + 1);
         cout<<nameList[fp].getData()<<" - "<<nameList[sp].getData()<<endl;
     }
+    
+   float** fw =  FloydWarshall(PersonToPerson, numberOfRows);
+    
+    float a = heighest(fw, numberOfRows);
+    cout<<"closeness: "<<a<<endl;
+    
 
-//    Release Memory
+    //    Release Memory
     delete [] groupList;
     delete [] nameList;
+    for(int index = 0; index < numberOfRows; ++index){
+        
+        delete fw[index];
+    }
+    
+    delete [] fw;
+    
     release(PersonToPerson, numberOfRows);
     release(groupToGroup, numberOfCommas);
     release(transposedMatrix, numberOfCommas);

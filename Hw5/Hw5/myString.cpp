@@ -8,7 +8,7 @@
 //
 
 #include "myString.hpp"
-#include "string.h"
+#include <string.h>
 #include <iostream>
 MyString::MyString(){
     
