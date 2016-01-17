@@ -93,6 +93,7 @@ void MyString::copyFrom(MyString const &other){
 void MyString::del(){
     
     delete [] data;
+    data = NULL;
     length = 0;
 }
 

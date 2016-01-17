@@ -14,25 +14,25 @@ int main(int argc, const char * argv[]) {
     
     BinaryTree<int> bTree;
     
-    bTree.insert(5);
-    bTree.insert(10);
-    bTree.insert(2);
+    bTree.insert(7);
     bTree.insert(1);
-    bTree.insert(12);
+    bTree.insert(3);
     bTree.insert(5);
-    bTree.insert(10);
+    bTree.insert(4);
+    bTree.insert(9);
     bTree.insert(2);
-    bTree.insert(1);
-    bTree.insert(12);
-    bTree.insert(5);
-    bTree.insert(10);
-    bTree.insert(2);
-    bTree.insert(1);
-    bTree.insert(12);
+    bTree.insert(6);
+    bTree.insert(8);
+//    bTree.insert(12);
+//    bTree.insert(5);
+//    bTree.insert(10);
+//    bTree.insert(2);
+//    bTree.insert(1);
+//    bTree.insert(12);
     
     
     bTree.print();
-    bTree.remove(1);
+   // bTree.remove(1);
     std::cout<<'\n';
     bTree.print();
     

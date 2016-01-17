@@ -10,9 +10,12 @@
 #include <fstream>
 #include "string.h"
 #include "myString.hpp"
+#include "DinamicArray.hpp"
+#include <iomanip>
 using namespace std;
 
 //file path: /Users/Emo/FMI/SDP-practicum/Hw5/PaulRevereAppD.csv
+
 size_t numberOfCols(string path){
 
     ifstream reader(path);
@@ -72,18 +75,16 @@ void populateGroup(ifstream& reader, MyString*& group){
                 memset(buffer, 0, 256);
                 currentCol++;
                 index = 0;
-                
-                
                 continue;
             }
             else if (symbol == '\n'){
+                group[currentCol].setData(buffer);
                 break;
             }
             else{
                 buffer[index] = symbol;
                 index++;
             }
-            
             
         }
     }
@@ -96,7 +97,7 @@ void populateMembers(ifstream& reader, MyString*& members, size_t**& matrix){
     if(reader){
        
         char symbol;
-        char buffer[256] = {0};
+        char buffer[256] = {};
         int index = 0;
         bool isFirst = true;
         while (reader.read(&symbol, sizeof(symbol))) {
@@ -104,34 +105,18 @@ void populateMembers(ifstream& reader, MyString*& members, size_t**& matrix){
             if(symbol == ',' &&  isFirst){
                 
                 members[currentRow].setData(buffer);
-                cout<<members[currentRow].getData()<<" ";
                 memset(buffer, 0, 256);
                 index = 0;
                 isFirst = false;
                 continue;
             }
-//            else if(symbol == ',' && !isFirst){
-//
-//                size_t value = 0;
-//                reader>>value;
-//                matrix[currentRow][currentCol] = value;
-//                currentCol++;
-//                    
-//            }
-//            else if(symbol == '\n'){
-//                    
-//                currentRow++;
-//                currentCol = 0;
-//                isFirst = true;
-//            }
-            
+
             if(!isFirst){
                 
                 if (symbol == '0' || symbol == '1'){
                     
                     size_t value = symbol - '0';
                     matrix[currentRow][currentCol] = value;
-                    cout<<matrix[currentRow][currentCol]<<" ";
                     currentCol++;
                 }
                 
@@ -139,7 +124,6 @@ void populateMembers(ifstream& reader, MyString*& members, size_t**& matrix){
                     isFirst = true;
                     currentRow++;
                     currentCol = 0;
-                    cout<<endl;
                 }
             }
             
@@ -150,6 +134,79 @@ void populateMembers(ifstream& reader, MyString*& members, size_t**& matrix){
             }
         }
     }
+}
+
+size_t** transpose(size_t** matrix, size_t rows, size_t cols){
+    
+    size_t** transposeMatrix = new size_t*[cols];
+    for(size_t index = 0; index < cols; ++index){
+        
+        transposeMatrix[index] = new size_t[rows];
+        for(size_t elem = 0; elem < rows; ++elem){
+            
+            transposeMatrix[index][elem] = matrix[elem][index];
+        }
+    }
+    
+    return transposeMatrix;
+}
+
+size_t** muliplyMatrix(size_t** firstMatrix, size_t** secondMatrix, size_t firstRows, size_t firstCols, size_t secondRows, size_t secondCols){
+    
+    if(firstCols != secondRows){
+        
+        return NULL;
+    }
+    
+    size_t** newMatrix = new size_t*[firstRows];
+    for(size_t index = 0; index < firstRows; ++index){
+        
+        newMatrix[index] = new size_t[secondCols];
+        for(size_t elem = 0; elem < secondCols ;++elem){
+            
+            newMatrix[index][elem] = 0;
+            if(elem == index){
+                continue;
+            }
+            
+            for(size_t num = 0; num < firstCols; ++num){
+                
+                newMatrix[index][elem] += firstMatrix[index][num] * secondMatrix[num][elem];
+            }
+        }
+    }
+    
+    return newMatrix;
+}
+
+void mostConenctions(size_t** matrix, size_t rows, size_t cols, DinamicArray<int>& dArray){
+    
+    size_t number = 0;
+    int r = 0, i = 0;
+    for(int index = 0; index < rows; ++index){
+        
+        for(int elem = index; elem < cols; ++elem){
+            
+            if (number == matrix[index][elem]) {
+
+                dArray.addElement(index);
+                dArray.addElement(elem);
+            }
+        
+            if(number  < matrix[index][elem]){
+
+                dArray.clear();
+                number = matrix[index][elem];
+                dArray.addElement(index);
+                dArray.addElement(elem);
+                i = index;
+                r = elem;
+                
+            }
+        }
+    }
+    
+    cout<<number<<" "<<r<<" "<<i<<endl;
 }
 
 int main(int argc, const char * argv[]) {
@@ -175,13 +232,10 @@ int main(int argc, const char * argv[]) {
             if(firstLine && word == ','){
                 numberOfCommas++;
             }
-        }
-        cout<<endl;
+        };
     }
     
     input.close();
-    
-    cout<<numberOfCommas<<" "<<numberOfRows + 1<<endl;
     size_t **matrix;
     allocate(matrix, numberOfRows, numberOfCommas);
     MyString* groupList = new MyString[numberOfCommas + 1];
@@ -191,17 +245,58 @@ int main(int argc, const char * argv[]) {
     if(reader){
         
         populateGroup(reader, groupList);
-        for(int index = 0; index < numberOfCommas; ++index){
-            
-            cout<<groupList[index].getData()<<" ";
-            cout<<endl;
-        }
         populateMembers(reader, nameList, matrix);
+    }
+    reader.close();
+    
+    size_t** transposedMatrix = transpose(matrix, numberOfRows , numberOfCommas);
+    size_t** groupToGroup = muliplyMatrix(transposedMatrix, matrix, numberOfCommas, numberOfRows, numberOfRows , numberOfCommas);
+    size_t** PersonToPerson = muliplyMatrix(matrix, transposedMatrix, numberOfRows, numberOfCommas, numberOfCommas, numberOfRows);
+    
+    DinamicArray<int> connectionArray;
+    for(int i = 0; i < numberOfCommas + 1; ++i){
+        
+        cout<<setw(15)<<groupList[i].getData()<<"\t";
+    }
+    cout<<endl;
+    for(int i = 0; i < numberOfCommas; ++i){
+        
+        cout<<setw(15)<<groupList[i + 1].getData();
+        for(int j = 0; j < numberOfCommas; ++j){
+            cout<<setw(10)<<groupToGroup[i][j]<<"\t\t";
+        }
+        cout<<endl;
+    }
+   
+//    Group to group  - results
+    cout<<"\n\tGroups with most common people: ";
+    mostConenctions(groupToGroup, numberOfCommas, numberOfCommas, connectionArray);
+    size_t groupLen = connectionArray.getLength();
+    for(int i = 0; i < groupLen; i+= 2){
+        int fp = connectionArray.getElementAtIndex(i);
+        int sp = connectionArray.getElementAtIndex(i + 1);
+        cout<<groupList[fp + 1].getData()<<" - "<<groupList[sp + 1].getData()<<endl;
     }
     
     
-    reader.close();
+//    Person to Person
+    connectionArray.clear();
+    cout<<endl<<"\tPeople with most common memberships: ";
+    mostConenctions(PersonToPerson, numberOfRows, numberOfRows, connectionArray);
+    size_t pLen = connectionArray.getLength();
+    for(int i = 0; i < pLen; i+= 2){
+        int fp = connectionArray.getElementAtIndex(i);
+        int sp = connectionArray.getElementAtIndex(i + 1);
+        cout<<nameList[fp].getData()<<" - "<<nameList[sp].getData()<<endl;
+    }
+
+//    Release Memory
+    delete [] groupList;
+    delete [] nameList;
+    release(PersonToPerson, numberOfRows);
+    release(groupToGroup, numberOfCommas);
+    release(transposedMatrix, numberOfCommas);
     release(matrix, numberOfRows);
-    
+
     return 0;
 }
