@@ -10,6 +10,7 @@
 #define HashTable_hpp
 
 #include <stdio.h>
+#include <cmath>
 #include "List.hpp"
 #include "Pair.hpp"
 #include "Hash.hpp"
@@ -20,7 +21,7 @@ template <typename K, typename V>
 class HashTable{
 
     public:
-    
+
         HashTable(size_t _capacity){
             
             setCapacity(_capacity);
@@ -41,51 +42,74 @@ class HashTable{
             
             
             FileManager<K, V>::deleteFromFile(_key);
-            long index = Hash::stringHash(_key) % capacity;
+            char* stringKey = Hash::toString(_key);
+            long index = Hash::stringHash(stringKey) % capacity;
             LinkedList<Pair<K, V>>& row = hashTable[index];
             for(int index = 0; index < row.getSize(); ++index){
                 
                 if(row.getAt(index).key == _key){
-                   
-                    std::cout<<row.getAt(index).value<<std::endl;
+                
                     row.removeElement(index);
+                    delete [] stringKey;
                     return true;
                     
                 }
             }
             
+            delete [] stringKey;
             return false;
         }
   
-    bool Load(Pair<K, V> &temp){
-        
-        if(checkInMemory(temp.key, temp.value)){
+        bool Load(Pair<K, V> &temp){
+            
+            if(checkInMemory(temp.key, temp.value)){
 
-            return true;
-        }
-        else if(FileManager<K, V>::readFromFile(temp.key, temp.value)){
-            
-            return true;
-        }
+                return true;
+            }
+            else if(FileManager<K, V>::readFromFile(temp.key, temp.value)){
+                
+                cout<<temp.value<<endl;
+                return true;
+            }
         
-        return false;
-    }
+            return false;
+        }
     
-        void Store(K _key, V _value){
+        size_t Store(V _value){
             
-            long index = Hash::stringHash(_key) % capacity;
+            size_t key = Hash::rot_hash(_value);
+            cout<<key<<endl;
+            privateStore(key, _value);
+           
+            return key;
+        }
+    
+    private:
+    
+        LinkedList<Pair<K,V>>* hashTable;
+        size_t capacity;
+    
+        void privateStore(K _key, V _value){
+            
+            //convert key to char*
+            int sizeOfKey = (int)log10(_key) + 2;
+            char* keyString = new char[sizeOfKey];
+            keyString[sizeOfKey - 1] = '\0';
+            sprintf(keyString, "%ld", _key);
+            
+            
+            //place in hashtable
+            long index = Hash::stringHash(keyString) % 1000;
             LinkedList<Pair<K, V>>& row = hashTable[index];
             Pair<K,V> pair;
             pair.key = _key;
             pair.value = _value;
             row.addElement(pair);
 
-            FileManager<K, V>::writeToFile(_key, _value);
+            FileManager<K, V>::writeToFile(keyString , _value);
+            delete [] keyString;
         }
-    private:
     
-        LinkedList<Pair<K,V>>* hashTable;
-        size_t capacity;
         void setCapacity(size_t _capacity){
             
             if(_capacity > 0){
@@ -101,7 +125,8 @@ class HashTable{
     
         bool checkInMemory(K _key, V& _value){
             
-            long index = Hash::stringHash(_key) % capacity;
+            char* stringKey = Hash::toString(_key);
+            long index = Hash::stringHash(stringKey) % capacity;
             LinkedList<Pair<K, V>>& row = hashTable[index];
             for(int index = 0; index < row.getSize(); ++index){
                 

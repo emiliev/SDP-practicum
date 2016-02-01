@@ -104,7 +104,7 @@ size_t DinamicArray<T>::getLength(){
 template <typename T>
 T DinamicArray<T>::getElementAtIndex(size_t index){
     
-    if(index > this->length){
+    if(index >= this->length){
         return NULL;
     }
     
@@ -143,17 +143,19 @@ template <typename T>
 void DinamicArray<T>::reallocate(int removedSize){
 
     int newSize = length - removedSize;
-    T* newData = new T[newSize];
-    for(int index = 0; index < newSize; ++index){
-    
-        newData[index] = data[index];
-    }
-   
-    delete [] data;
-    
-    data = newData;
+//    T* newData = new T[newSize];
+//    for(int index = newSize; index < length; ++index){
+//    
+//        delete data[index];
+//    }
+//
     length = newSize;
-    allocatedSize = newSize;
+    //
+//    delete [] data;
+//    
+//    data = newData;
+//    length = newSize;
+   // allocatedSize = newSize;
 }
 
 #endif /* DinamicArray_hpp */

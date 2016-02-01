@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BDB1EE151C4E13B600BB85B6"
-               BuildableName = "Hw2"
-               BlueprintName = "Hw2"
-               ReferencedContainer = "container:Hw2.xcodeproj">
+               BlueprintIdentifier = "BD3A825B1C53BE61004117CA"
+               BuildableName = "hashTestingShit"
+               BlueprintName = "hashTestingShit"
+               ReferencedContainer = "container:hashTestingShit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDB1EE151C4E13B600BB85B6"
-            BuildableName = "Hw2"
-            BlueprintName = "Hw2"
-            ReferencedContainer = "container:Hw2.xcodeproj">
+            BlueprintIdentifier = "BD3A825B1C53BE61004117CA"
+            BuildableName = "hashTestingShit"
+            BlueprintName = "hashTestingShit"
+            ReferencedContainer = "container:hashTestingShit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDB1EE151C4E13B600BB85B6"
-            BuildableName = "Hw2"
-            BlueprintName = "Hw2"
-            ReferencedContainer = "container:Hw2.xcodeproj">
+            BlueprintIdentifier = "BD3A825B1C53BE61004117CA"
+            BuildableName = "hashTestingShit"
+            BlueprintName = "hashTestingShit"
+            ReferencedContainer = "container:hashTestingShit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BDB1EE151C4E13B600BB85B6"
-            BuildableName = "Hw2"
-            BlueprintName = "Hw2"
-            ReferencedContainer = "container:Hw2.xcodeproj">
+            BlueprintIdentifier = "BD3A825B1C53BE61004117CA"
+            BuildableName = "hashTestingShit"
+            BlueprintName = "hashTestingShit"
+            ReferencedContainer = "container:hashTestingShit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

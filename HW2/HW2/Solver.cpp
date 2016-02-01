@@ -14,7 +14,6 @@ Solver::Solver(){
 
 Solver::~Solver(){
 
-    
 }
 
 
@@ -82,7 +81,7 @@ void Solver::showAllPaths(Cell* startCell, Cell* endCell, Table &matrix){
     if(startCell->getRow() == endCell->getRow() && startCell->getCol() == endCell->getCol()){
         
         showCurrentPath();
-//        currentPath.reallocate(numberOfMoves);
+        currentPath.reallocate(numberOfMoves);
         currentPath.addElement(firstCell);
         numberOfMoves = 1;
         return;
@@ -90,6 +89,7 @@ void Solver::showAllPaths(Cell* startCell, Cell* endCell, Table &matrix){
     
     startCell->mark();
     for(int index = 0; index < 4; ++index){
+        
         
         if(matrix.validNextMove(startCell, index)){
             
@@ -99,7 +99,6 @@ void Solver::showAllPaths(Cell* startCell, Cell* endCell, Table &matrix){
                 currentPath.addElement(newCell);
                 numberOfMoves++;
                 showAllPaths(newCell, endCell, matrix);
-                currentPath.reallocate(1);
             }
             
         }

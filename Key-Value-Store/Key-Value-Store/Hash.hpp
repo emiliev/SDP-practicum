@@ -15,5 +15,7 @@ class Hash{
    
     public:
     static long stringHash(char* key);
+    static long rot_hash(char* key);
+    static char* toString(size_t _key);
 };
 #endif /* Hash_hpp */

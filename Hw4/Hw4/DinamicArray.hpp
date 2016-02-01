@@ -25,7 +25,7 @@ class DinamicArray{
         void addElement(T element);
         void removeLastElement();
         size_t getLength();
-        T getElementAtIndex(size_t index);
+        T getfElementAtIndex(size_t index);
         void reallocate(int newSize);
         void showElements();
   

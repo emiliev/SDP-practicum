@@ -91,4 +91,5 @@ int main(int argc, const char * argv[]) {
     
     delete [] word;
     return 0;
+    return 0;
 }

@@ -22,6 +22,7 @@ class Pair{
         
         key = type;
     }
+
 };
 
 
