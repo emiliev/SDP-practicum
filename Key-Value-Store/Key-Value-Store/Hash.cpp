@@ -46,6 +46,7 @@ char* Hash::toString(size_t _key){
     char* keyString = new char[sizeOfKey];
     keyString[sizeOfKey - 1] = '\0';
     sprintf(keyString, "%ld", _key);
+    
     return keyString;
     
 }

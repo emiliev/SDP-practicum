@@ -14,7 +14,7 @@
 #include "List.hpp"
 #include "Pair.hpp"
 #include "Hash.hpp"
-#include "FileManager.hpp"
+#include "IOManager.hpp"
 #include <iostream>
 
 template <typename K, typename V>
@@ -41,7 +41,7 @@ class HashTable{
         bool Erase(K _key){
             
             
-            FileManager<K, V>::deleteFromFile(_key);
+            IOManager.deleteFromFile(_key);
             char* stringKey = Hash::toString(_key);
             long index = Hash::stringHash(stringKey) % capacity;
             LinkedList<Pair<K, V>>& row = hashTable[index];
@@ -66,9 +66,8 @@ class HashTable{
 
                 return true;
             }
-            else if(FileManager<K, V>::readFromFile(temp.key, temp.value)){
+            else if(IOManager.readFromFile(temp.key,temp.value)){
                 
-                cout<<temp.value<<endl;
                 return true;
             }
         
@@ -79,14 +78,20 @@ class HashTable{
             
             size_t key = Hash::rot_hash(_value);
             cout<<key<<endl;
-            privateStore(key, _value);
-           
+            Pair<K,V> temp;
+            temp.key = key;
+            if(!Load(temp)){
+                
+                cout<<"Stroing in file\n";
+                privateStore(key, _value);
+            }
             return key;
         }
     
     private:
     
         LinkedList<Pair<K,V>>* hashTable;
+        IOManager<K, V> IOManager;
         size_t capacity;
     
         void privateStore(K _key, V _value){
@@ -105,8 +110,8 @@ class HashTable{
             pair.key = _key;
             pair.value = _value;
             row.addElement(pair);
-
-            FileManager<K, V>::writeToFile(keyString , _value);
+            IOManager.writeToFile(_key , _value);
+            
             delete [] keyString;
         }
     

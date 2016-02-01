@@ -12,18 +12,14 @@
 #include "List.hpp"
 #include "HashTable.hpp"
 #include "Pair.hpp"
-#include "FileManager.hpp"
+#include "IOManager.hpp"
 using namespace std;
-
-const int kKeyLength = 256;
-
 
 /////////TODO/////////
 /*
 
- UNIQUE KEYS
- REWORKED SEARCH FUNCTION IN LINKED LIST
- keshirasht mechanizum
+
+ Caching mechanism
  
  ETC..
 */
@@ -33,8 +29,8 @@ int main(int argc, const char * argv[]) {
     HashTable<size_t,char*> table(1000);
     char value[1000];
     std::cin.getline(value, 1000);
-//    size_t key = 95737627657286;
     size_t key = table.Store(value);
+//    size_t key = 7095897;
     cout<<key<<endl;
     Pair<size_t,char*> temp;
     temp.key = key;
@@ -45,7 +41,7 @@ int main(int argc, const char * argv[]) {
     }
     
 //    table.Erase(key);
-//    if(table.Load(temp)){
+    //if(table.Load(temp)){
 //        
 //        cout<<temp.key<<" "<<temp.value<<endl;
 //        delete [] temp.value;

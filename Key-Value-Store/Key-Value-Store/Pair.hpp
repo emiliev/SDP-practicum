@@ -18,11 +18,6 @@ class Pair{
         K key;
         V value;
 
-    void setValue(K type){
-        
-        key = type;
-    }
-
 };
 
 
