@@ -21,6 +21,9 @@ class IOManager{
     
     public:
     
+    //
+    //Writes current record on disk
+    //
     void writeToFile(K _key, V _value){
         
         char* fileName = makeFileName(_key);
@@ -71,6 +74,9 @@ class IOManager{
         delete [] fileName;
     }
     
+    //
+    //Loads record with igven key if it exists
+    //
     bool readFromFile(K _key, V& _value){
         
         char* fileName = makeFileName(_key);
@@ -104,6 +110,9 @@ class IOManager{
         return isFound;
     }
     
+    //
+    //Deletes the record and
+    //
     bool deleteFromFile(K _key){
 
         char* fileName = makeFileName(_key);
@@ -173,6 +182,9 @@ class IOManager{
     
     private:
     
+    //
+    //checks if exists file with this name
+    //
     bool isCreatedFile(char* fileName){
         
         bool isCreated;
@@ -202,6 +214,9 @@ class IOManager{
         return isCreated;
     }
     
+    //
+    //The remaing bytes, that need to be override
+    //
     void writeRemainingBytes(size_t bytes,char* fileName){
         
         ofstream record(fileName, ios::binary | ios::in);
@@ -211,6 +226,10 @@ class IOManager{
         }
     }
     
+    
+    //
+    //gives the name of the file on which is working
+    //
     char* makeFileName(K _key){
         
         char* stringKey = Hash::toString(_key);

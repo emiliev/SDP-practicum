@@ -18,19 +18,20 @@ using namespace std;
 /////////TODO/////////
 /*
 
-
  Caching mechanism
- 
- ETC..
+
 */
 
 int main(int argc, const char * argv[]) {
     
     HashTable<size_t,char*> table(1000);
+    
+    ///
+    ///Store data on disk & load data from memory
+    ///
     char value[1000];
     std::cin.getline(value, 1000);
     size_t key = table.Store(value);
-//    size_t key = 7095897;
     cout<<key<<endl;
     Pair<size_t,char*> temp;
     temp.key = key;
@@ -39,15 +40,43 @@ int main(int argc, const char * argv[]) {
         cout<<temp.key<<" "<<temp.value<<endl;
         temp.value = NULL;
     }
+
     
-//    table.Erase(key);
-    //if(table.Load(temp)){
+    ///
+    ///Load data from disk
+    ///
+    
+//    size_t key = 408572;
+//    Pair<size_t, char*> temp;
+//    temp.key = key;
+//    if(table.Load(temp)){
 //        
 //        cout<<temp.key<<" "<<temp.value<<endl;
-//        delete [] temp.value;
+//    }
+//    else{
+//        
+//        cout<<"Couldn't load any data!\n";
+//    }
+    
+    
+    ///
+    ///Erase from memory
+    ///
+    
+  //  char value[1000];
+  //  std::cin.getline(value, 1000);
+//    size_t key = 428415627045;
+//    cout<<key<<endl;
+//    Pair<size_t,char*> temp;
+//    temp.key = key;
+//    table.Erase(key);
+//    if(table.Load(temp)){
+//
+//        cout<<temp.key<<" "<<temp.value<<endl;
 //        temp.value = NULL;
 //    }
-//    
+
+    
 //    size_t b = table.Store(a);
 //    Pair<size_t, char*> temp1;
 //    temp.key = b;

@@ -16,7 +16,6 @@ class Node{
   
     public:
         Node<T>* pNext;
-      //  Node<T>* pPrev;
         T data;
 };
 

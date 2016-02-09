@@ -36,6 +36,9 @@ class LinkedList{
         void del();
 };
 
+//
+//Returns elemnt from list
+//
 template <typename T>
 T& LinkedList<T>::getAt(int index){
     
@@ -52,6 +55,9 @@ T& LinkedList<T>::getAt(int index){
     return end->data;
 }
 
+//
+//Adds element to list
+//
 template <typename T>
 void LinkedList<T>::addElement(T value){
     
@@ -72,6 +78,10 @@ void LinkedList<T>::addElement(T value){
     listSize++;
 }
 
+
+//
+//Removes element from list
+//
 template <typename T>
 void LinkedList<T>::removeElement(int index){
     
@@ -113,6 +123,10 @@ void LinkedList<T>::removeElement(int index){
     }
 }
 
+
+//
+//Default Constructor
+//
 template <typename T>
 LinkedList<T>::LinkedList(){
     
@@ -121,18 +135,28 @@ LinkedList<T>::LinkedList(){
     listSize = 0;
 }
 
+
+//
+//Destructor
+//
 template <typename T>
 LinkedList<T>::~LinkedList(){
     
     del();
 }
 
+//
+//Copy Constructor
+//
 template <typename T>
 LinkedList<T>::LinkedList(LinkedList const &other){
     
     copyFrom(other);
 }
 
+//
+//Asignment operator
+//
 template <typename T>
 LinkedList<T>& LinkedList<T>::operator=(LinkedList<T> const &other){
     
@@ -144,12 +168,20 @@ LinkedList<T>& LinkedList<T>::operator=(LinkedList<T> const &other){
     return *this;
 }
 
+
+//
+//size of list
+//
 template <typename T>
 size_t LinkedList<T>::getSize(){
     
     return listSize;
 }
 
+
+//
+//checks if current index is in range of the list
+//
 template <typename T>
 bool LinkedList<T>::isValidIndex(int index){
     
@@ -161,6 +193,9 @@ bool LinkedList<T>::isValidIndex(int index){
     return true;
 }
 
+//
+//help func. for Copy Constructor
+//
 template <typename T>
 void LinkedList<T>::copyFrom(LinkedList<T> const &other){
     
@@ -192,6 +227,9 @@ void LinkedList<T>::copyFrom(LinkedList<T> const &other){
     
 }
 
+//
+//help function for releasing allocated memory
+//
 template <typename T>
 void LinkedList<T>::del(){
     Node<T>* pNode = start;

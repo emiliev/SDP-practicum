@@ -22,22 +22,35 @@ class HashTable{
 
     public:
 
+        //
+        //constructor
+        //
         HashTable(size_t _capacity){
             
             setCapacity(_capacity);
             hashTable = new LinkedList<Pair<K, V>>[capacity];
 
         }
+    
+        //
+        //desructor
+        //
         virtual~HashTable(){
             
             delete [] hashTable;
         }
     
+        //
+        //returns the size of the hash table
+        //
         size_t getCapacity(){
             
             return this->capacity;
         }
     
+        //
+        //Erases the given key & value from the memory & file if exists
+        //
         bool Erase(K _key){
             
             
@@ -60,6 +73,9 @@ class HashTable{
             return false;
         }
   
+        //
+        //Loades the Pair in memory
+        //
         bool Load(Pair<K, V> &temp){
             
             if(checkInMemory(temp.key, temp.value)){
@@ -74,6 +90,9 @@ class HashTable{
             return false;
         }
     
+        //
+        //Generates key for given value
+        //
         size_t Store(V _value){
             
             size_t key = Hash::rot_hash(_value);
@@ -94,6 +113,9 @@ class HashTable{
         IOManager<K, V> IOManager;
         size_t capacity;
     
+        //
+        //Saves the pair on the disk & memory
+        //
         void privateStore(K _key, V _value){
             
             //convert key to char*
@@ -115,6 +137,9 @@ class HashTable{
             delete [] keyString;
         }
     
+        //
+        //set capacity of the hashTable
+        //
         void setCapacity(size_t _capacity){
             
             if(_capacity > 0){
@@ -128,6 +153,10 @@ class HashTable{
             }
         }
     
+        //
+        //Searches the given key if it's loaded in the memory of the table
+        //if it is, than returns the value.
+        //
         bool checkInMemory(K _key, V& _value){
             
             char* stringKey = Hash::toString(_key);
@@ -145,5 +174,6 @@ class HashTable{
             
             return false;
         }
+    
 };
 #endif /* HashTable_hpp */
