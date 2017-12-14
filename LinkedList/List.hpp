@@ -40,13 +40,18 @@ class List{
     
     virtual ~List(){
         
-        Box<T>* temp = start;
-        while (temp) {
-            
-            Box<T>* p = temp;
-            temp = temp->pNext;
-            delete p;
-        }
+        releaseRecursive(start);
+    }
+    
+    void release(){
+        releaseRecursive(start);
+    }
+    
+    void releaseRecursive(Box<T>*& node){
+        if (!node) { return; }
+        releaseRecursive(node->pNext);
+        delete node;
+        size--;
     }
     
     void add(T value){
@@ -60,7 +65,7 @@ class List{
             start = newElem;
         }
         else{
-            
+        
             end->pNext = newElem;
         }
         

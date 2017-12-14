@@ -22,19 +22,26 @@ int main(int argc, const char * argv[]) {
     intL.remove(5);
     
     std::cout<<"after several deleted intems: \n";
+//    for(int index = 0; index < intL.getSize(); ++index){
+//
+//        std::cout<<intL.getAt(index)<<" ";
+//    }
+
+    
+    size_t listSize = intL.getSize();
+//    for(size_t index = 0; index <listSize; ++index){
+//
+//        int p = 0;
+//        std::cout<<" i'm gonna delete this elements: "<<intL.getAt(p)<<'\n';
+//        intL.remove(p);
+//    }
+    
+    intL.release();
     for(int index = 0; index < intL.getSize(); ++index){
         
         std::cout<<intL.getAt(index)<<" ";
     }
-
     
-    size_t listSize = intL.getSize();
-    for(size_t index = 0; index <listSize; ++index){
-    
-        int p = 0;
-        std::cout<<" i'm gonna delete this elements: "<<intL.getAt(p)<<'\n';
-        intL.remove(p);
-    }
 
     return 0;
 }

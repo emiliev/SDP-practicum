@@ -25,7 +25,7 @@ class DinamicArray{
         void removeLastElement();
         size_t getLength();
         T getElementAtIndex(size_t index);
-        void reallocate(int newSize);
+        
     private:
     
         T* data;
@@ -139,23 +139,6 @@ void DinamicArray<T>::destroy(){
     allocatedSize = 0;
 }
 
-template <typename T>
-void DinamicArray<T>::reallocate(int removedSize){
 
-    int newSize = length - removedSize;
-//    T* newData = new T[newSize];
-//    for(int index = newSize; index < length; ++index){
-//    
-//        delete data[index];
-//    }
-//
-    length = newSize;
-    //
-//    delete [] data;
-//    
-//    data = newData;
-//    length = newSize;
-   // allocatedSize = newSize;
-}
 
 #endif /* DinamicArray_hpp */
